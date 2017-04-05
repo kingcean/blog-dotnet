@@ -1,0 +1,35 @@
+{
+    "name": ".Net Software Development Blog",
+    "list": [
+        {
+            "name": "Delay task",
+            "url": "/2016/delay-task.md",
+            "categories": [],
+            "date": "20160320"
+        },
+        {
+            "name": "Multiple hit task",
+            "url": "/2016/multiple-hit-task.md",
+            "categories": [],
+            "date": "20160321"
+        },
+        {
+            "name": "Windows 10 remote Arduino",
+            "url": "/2016/windows-remote-arduino.md",
+            "categories": [],
+            "date": "20160325"
+        },
+        {
+            "name": "String format",
+            "url": "/2016/string-format.md",
+            "categories": [],
+            "date": "20160406"
+        },
+        {
+            "name": "Speech in UWP",
+            "url": "/2016/speech-in-uwp.md",
+            "categories": [],
+            "date": "20160818"
+        }
+    ]
+}
