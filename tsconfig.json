@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "umd",
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "jsx": "react",
+    "pretty": true,
+    "sourceMap": false,
+    "declaration": true,
+    "target": "es5"
+  },
+  "compileOnSave": true,
+  "exclude": [
+    "node_modules",
+    "wwwroot"
+  ]
+}
