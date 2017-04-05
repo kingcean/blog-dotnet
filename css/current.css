@@ -1,0 +1,14 @@
+body > header:first-child + header {
+    background-color: #68217A;
+    height: 78px;
+    border-width: 1px 0;
+    border-style: solid none;
+    border-color: #CF17FC;
+}
+body > header:first-child + header > section > img:first-child {
+    width: 245px;
+    height: 80px;
+    position: absolute;
+    top: -1px;
+    left: 20px;
+}

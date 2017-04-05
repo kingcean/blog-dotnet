@@ -1,0 +1,39 @@
+body {
+    color: #EEE;
+    font-family: 'Segoe UI', '微软雅黑', 'Microsoft JhengHei', Tahoma, "Helvetica Neue", Arial, Geneva, Verdana, sans-serif, "Segoe UI Symbol";
+    font-size: 14px;
+    background-color: #333;
+    padding: 0;
+    margin: 0;
+}
+body > header:first-child {
+    height: 40px;
+}
+body > header:first-child + header {
+    height: 80px;
+}
+body > footer {
+    height: 120px;
+    padding: 19px 0 40px 0;
+    border-top: 1px solid #444;
+}
+body > header > section, body > section > section, body > footer > section {
+    width: 1000px;
+    margin: 0 auto;
+    box-sizing: content-box;
+    position: relative;
+}
+body > header > section, body > footer > section {
+    padding: 0 20px;
+}
+body > section > section {
+    padding: 20px;
+}
+body > header:first-child > section {
+    height: 20px;
+    padding: 10px 20px;
+}
+body > header:first-child > section > img:first-child {
+    width: 90px;
+    height: 20px;
+}
