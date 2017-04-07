@@ -1,4 +1,4 @@
-﻿var site = {};
+var site = {};
 (function(site) {
 
     site.query = function (name) {
