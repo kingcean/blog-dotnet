@@ -1,4 +1,4 @@
-﻿var site = {};
+var site = {};
 (function(site) {
 
     site.query = function (name) {
@@ -27,7 +27,7 @@
 
     site.firstQuery = function () {
         var id = location.search;
-        if (!!id && id.length > 1) {
+        if (id && id.length > 1) {
             id = id.substring(1);
             var idEndPos = id.indexOf("?");
             if (idEndPos >= 0) id = id.substring(0, idEndPos);
@@ -87,7 +87,8 @@
             });
 
             var articleStr = "";
-            if (id) {
+            if (selItem) {
+                var item = selItem;
                 articleStr = "<h1>" + item.name + "</h1><section><em>Loading...</em></section>";
                 r.list.some(function (item) {
                     if (!item || item.invalid || item.id !== id) return false;
