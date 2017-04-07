@@ -61,6 +61,7 @@
         $.get(lang.indexOf("zh") === 0 ? "zh-Hans.json" : "en.json").then(function (r) {
             if (!r || !r.list || !(r.list instanceof Array)) return;
             var cntStr = "";
+            var selItem;
             r.list.reverse().forEach(function (item) {
                 if (!item) return;
                 if (!item.url || item.url.length < 17) {
@@ -68,8 +69,8 @@
                     return;
                 }
 
-                var fileName = item.url.substring(12);
-                var fileDate = item.url.substring(1, 11).replace("/", "").replace("/", "");
+                var fileName = item.url.substring(6);
+                var fileDate = item.url.substring(1, 5).replace("/", "").replace("/", "");
                 var fileExtPos = fileName.indexOf(".");
                 var fileExt = fileExtPos >= 0 ? fileName.substring(fileExtPos + 1) : "";
                 fileName = fileExtPos > 0 ? fileName.substring(0, fileExtPos) : "";
@@ -81,11 +82,12 @@
                 if (!item.id) item.id = fileName;
                 if (!item.date) item.date = fileDate;
                 if (!item.type) item.type = fileExt;
-                item.dir = item.url.substring(0, 11);
+                item.dir = item.url.substring(0, 5);
+                if (id === fileName) selItem = item;
             });
 
             var articleStr = "";
-            if (!!id) {
+            if (id) {
                 articleStr = "<h1>" + item.name + "</h1><section><em>Loading...</em></section>";
                 r.list.some(function (item) {
                     if (!item || item.invalid || item.id !== id) return false;
