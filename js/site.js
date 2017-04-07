@@ -1,4 +1,4 @@
-var site = {};
+﻿var site = {};
 (function(site) {
 
     site.query = function (name) {
@@ -27,7 +27,7 @@ var site = {};
 
     site.firstQuery = function () {
         var id = location.search;
-        if (id && id.length > 1) {
+        if (!!id && id.length > 1) {
             id = id.substring(1);
             var idEndPos = id.indexOf("?");
             if (idEndPos >= 0) id = id.substring(0, idEndPos);
@@ -61,7 +61,7 @@ var site = {};
         $.get(lang.indexOf("zh") === 0 ? "zh-Hans.json" : "en.json").then(function (r) {
             if (!r || !r.list || !(r.list instanceof Array)) return;
             var cntStr = "";
-            var selItem;
+            var curItem;
             r.list.reverse().forEach(function (item) {
                 if (!item) return;
                 if (!item.url || item.url.length < 17) {
@@ -83,12 +83,12 @@ var site = {};
                 if (!item.date) item.date = fileDate;
                 if (!item.type) item.type = fileExt;
                 item.dir = item.url.substring(0, 5);
-                if (id === fileName) selItem = item;
+                if (id === fileName) curItem = item;
             });
 
             var articleStr = "";
-            if (selItem) {
-                var item = selItem;
+            if (curItem) {
+                var item = curItem;
                 articleStr = "<h1>" + item.name + "</h1><section><em>Loading...</em></section>";
                 r.list.some(function (item) {
                     if (!item || item.invalid || item.id !== id) return false;
