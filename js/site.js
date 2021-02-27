@@ -41,13 +41,8 @@ var site = {};
     site.head = function () {
         var cntEle = document.createElement("header");
         cntEle.id = "page_head";
-        cntEle.innerHTML = '<section><h1><a href="http://www.kingcean.com/">Kingcean</a><span> &gt; </span><a href="http://github.kingcean.com/">GitHub</a></h1></section>';
+        cntEle.innerHTML = '<section><h1><a href="http://www.kingcean.com/">Kingcean</a></h1><ul><li><a href="https://github.com/kingcean?tab=repositories">Repositories</a></li><li><a href="http://github.kingcean.com/blog/dotnet">.Net Dev Blogs</a></li><li><a href="http://github.kingcean.com/blog/web">Web Dev Blogs</a></li><li><a href="http://github.kingcean.com/blog/qianduan">前端开发博客</a></li><li><a href="http://github.kingcean.com/blog/dian-net">.Net 开发博客</a></li></ul></section>';
         document.body.appendChild(cntEle);
-
-        var cnt2Ele = document.createElement("header");
-        cnt2Ele.id = "page_menu";
-        cnt2Ele.innerHTML = '<section><ul><li><a href="http://github.kingcean.com/">Home</a></li><li><a href="https://github.com/kingcean?tab=repositories">Repositories</a></li><li><a href="http://github.kingcean.com/blog/dotnet">.Net Dev Blogs</a></li><li><a href="http://github.kingcean.com/blog/web">Web Dev Blogs</a></li><li><a href="http://github.kingcean.com/blog/qianduan">前端开发博客</a></li><li><a href="http://github.kingcean.com/blog/dian-net">.Net 开发博客</a></li></ul></section>';
-        document.body.appendChild(cnt2Ele);
     };
 
     site.blogs = function () {

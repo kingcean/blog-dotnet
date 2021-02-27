@@ -1,105 +1,127 @@
 body {
-    color: #333;
-    font-family: 'Segoe UI', '微软雅黑', 'Microsoft JhengHei', Tahoma, "Helvetica Neue", Arial, Geneva, Verdana, sans-serif, "Segoe UI Symbol";
+    color: #EEE;
+    font-family: "Segoe UI", "Microsoft Yahei", "Microsoft JhengHei", "Tahoma", "Helvetica Neue", "Arial", "Geneva", "Verdana", sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 14px;
-    background-color: #F9F9F9;
+    background-color: #222;
+    min-height: 1000px;
     padding: 0;
     margin: 0;
 }
 a, a:visited {
-    color: #47C;
+    color: #3AC;
     text-decoration: none;
 }
 a:hover {
-    color: #47C;
+    color: #7EF;
     text-decoration: underline;
     cursor: pointer;
 }
-body > header a, body > header a:visited {
-    color: #333;
-    text-decoration: none;
+code {
+    font-family: "Cascadia Code", "Consolas", "Segoe UI", "Microsoft Yahei", "Microsoft JhengHei", "Tahoma", "Helvetica Neue", "Arial", "Geneva", "Verdana", sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
 }
-body > header a:hover {
-    color: #47C;
-    text-decoration: none;
-    cursor: pointer;
-}
-body > header:first {
+body > header {
     height: 39px;
-    background-color: #F9F9F9;
-    border-top: 1px solid #F9F9F9;
+    background-image: linear-gradient(to bottom, rgba(51, 51, 51, 0.8) 70%, rgba(47, 55, 68, 0.8));
+    border-bottom: 1px solid rgb(68, 68, 68, 0.8);
+    padding: 0;
+    margin: 0;
+    backdrop-filter: blur(4px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
-body > header + header {
-    background-color: #E3E3E3;
-    border-bottom: 1px solid #DDD;
-}
-body > header > section, body > header + header > section {
+body > header > section {
     width: 100%;
     max-width: 1000px;
     padding: 0;
     margin: 0 auto;
     position: relative;
+    display: flex;
 }
 body > header > section > h1:first-child {
-    color: #999;
     font-size: 18px;
     font-weight: normal;
     font-style: normal;
     text-align: left;
     line-height: 39px;
-    width: 200px;
+    width: 160px;
     height: 39px;
     padding: 0 0 0 10px;
     margin: 0;
-    cursor: default;
+    display: block;
 }
 body > header > section > h1:first-child > a, body > header > section > h1:first-child > a:visited {
-    color: #666;
-}
-body > header > section > h1:first-child > a:last-child, body > header > section > h1:first-child > a:last-child:visited {
-    color: #333;
-    font-size: 20px;
+    color: #EEE;
 }
 body > header > section > h1:first-child > a:hover {
-    color: #47C;
+    color: #7EF;
 }
-body > header > section > ul, body > header > section > ul > li,
-body > header + header > section > ul, body > header + header > section > ul > li {
+body > header > section > ul, body > header > section > ul > li {
+    height: 40px;
     padding: 0;
     margin: 0;
     list-style: none;
+}
+body > header > section > ul {
+    display: flex;
+}
+body > header > section > ul > li {
     display: block;
 }
-body > header > section > ul, body > header + header > section > ul {
-    display: block;
-}
-body > header > section > ul > li, body > header + header > section > ul > li {
+body > header > section > ul > li > a, body > header > section > ul > li > a:visited {
+    color: #EEE;
+    line-height: 38px;
+    text-align: center;
+    background-color: transparent;
+    padding: 0 30px;
+    margin: 1px 0 0 0;
+    border-color: transparent;
+    border-width: 1px 1px 0 1px;
+    border-style: solid solid none solid;
     display: inline-block;
 }
-body > header > section > ul > li > a, body > header + header > section > ul > li > a {
-    text-align: center;
-    line-height: 40px;
-    padding: 0 20px;
-    display: block;
+body > header > section > ul > li > a:hover {
+    color: #7EF;
+    text-decoration: none;
 }
-body > header > section > ul > li > a, body > header + header > section > ul > li > a:first-child {
-    padding-left: 10px;
+body > header > section > ul > li.state-selected-t > a, body > header > section > ul > li.state-selected-t > a:visited {
+    background-color: #222;
+    border-color: rgb(68, 68, 68, 0.8);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
-body > header > section > ul > li.state-selected-t {
-    color: black;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    background-color: #E3E3E3;
+body > header + section {
+    padding: 40px 0 0 0;
 }
 body > section {
     width: 100%;
     max-width: 1000px;
     padding: 0;
     margin: 0 auto;
+}
+body > section > section,
+body > section > h1,
+body > section > h2,
+body > section > h3 {
+    font-weight: normal;
+    width: 1000px;
+    padding: 0 20px;
+    margin: 0;
     position: relative;
 }
-body > section > h3, body > section > div, body > section > p {
-    padding: 10px;
+body > section > h1, body > section > section > h1 {
+    font-size: 24px;
+    line-height: 32px;
+}
+body > section > h2, body > section > section > h2 {
+    font-size: 20px;
+    line-height: 28px;
+}
+body > section > h3, body > section > section > h3 {
+    font-size: 18px;
+    line-height: 24px;
 }
 body > section > h3 {
     font-size: 16px;
@@ -136,7 +158,7 @@ body > section > ul, body > section > ul > li {
 #blog_content > ul {
     padding: 14px 19px;
     margin: 0;
-    border: 1px solid #DDD;
+    border: 1px solid #666;
     border-radius: 4px;
     float: none;
 }
