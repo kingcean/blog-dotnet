@@ -7,13 +7,14 @@
     position: relative;
 }
 #blog_content > h1 {
+    color: #BDD;
     font-size: 36px;
     font-weight: lighter;
     font-style: normal;
     line-height: 40px;
     width: 100%;
     padding: 0;
-    margin: 20px 0;
+    margin: 40px 0;
     position: relative;
     float: none;
     cursor: default;
@@ -37,17 +38,20 @@
 }
 #blog_content > section {
     font-size: 16px;
-    max-width: 600px;
+    max-width: 800px;
+    margin: 20px 0;
 }
 #blog_content > section image {
-    max-width: 600px;
+    max-width: 640px;
 }
 #blog_content > section > pre {
     background-color: rgba(128, 128, 128, 0.1);
     padding: 10px;
+    border-radius: 4px;
     overflow-x: auto;
 }
 #blog_content > section + h1 {
+    color: #CCC;
     font-size: 18px;
     font-weight: bolder;
     line-height: 40px;
@@ -57,7 +61,7 @@
     position: absolute;
     top: 10px;
     right: 0;
-    left: 620px;
+    left: 820px;
 }
 #blog_content > section + h1 + ul,
 #blog_content > section + h1 + ul + h2 + ul {
@@ -66,9 +70,9 @@
     border: 0 none transparent;
     border-radius: 0;
     position: absolute;
-    top: 50px;
+    top: 70px;
     right: 0;
-    left: 620px;
+    left: 820px;
 }
 #blog_content > section + h1 + ul > li,
 #blog_content > section + h1 + ul + h2 + ul > li {
