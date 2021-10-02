@@ -1,6 +1,7 @@
 #blog_content {
     font-weight: normal;
     width: 1000px;
+    min-height: 600px;
     padding: 0;
     margin: 20px auto;
     position: relative;
