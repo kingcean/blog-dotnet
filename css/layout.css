@@ -56,8 +56,9 @@ body > header:first-child > section:first-child > h1 {
     height: 60px;
     line-height: 60px;
     padding: 0;
-    margin: 0 100px 0 0;
+    margin: 0 80px 0 0;
     display: inline-block;
+    vertical-align: top;
 }
 body > header:first-child > section:first-child > h1 > a:first-child > strong:first-child + span {
     font-weight: lighter;
@@ -66,9 +67,8 @@ body > header:first-child > section:first-child > h1 + ul {
     font-weight: normal;
     font-style: normal;
     font-size: 16px;
-    height: 60px;
     line-height: 60px;
-    padding: 0;
+    padding: 4px 0;
     margin: 0;
     display: inline-block;
     list-style: none;
@@ -77,12 +77,12 @@ body > header:first-child > section:first-child > h1 + ul > li {
     font-weight: normal;
     font-style: normal;
     font-size: 16px;
-    height: 60px;
-    line-height: 60px;
+    height: 52px;
     padding: 0;
-    margin: 0 40px 0 0;
+    margin: 0;
     display: inline-block;
     list-style: none;
+    vertical-align: top;
 }
 body > header:first-child > section:first-child a,
 body > header:first-child > section:first-child a:visited {
@@ -91,10 +91,20 @@ body > header:first-child > section:first-child a:visited {
     transition: 0.6s;
     text-shadow: rgba(0, 0, 0, 0.7) 0 0 2px;
 }
+body > header:first-child > section:first-child > h1 + ul > li > a,
+body > header:first-child > section:first-child > h1 + ul > li > a:visited {
+    line-height: 52px;
+    padding: 0 20px;
+    margin: 0;
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: top;
+}
 body > header:first-child > section:first-child > h1 + ul > li.state-sel > a,
 body > header:first-child > section:first-child > h1 + ul > li.state-sel > a:visited {
-    color: rgba(255, 240, 160, 0.8);
-    text-shadow: rgba(0, 0, 0, 0.9) 0 0 10px;
+    color: #EEE;
+    background-color: rgba(0, 0, 0, 0.2);
+    text-shadow: rgba(192, 240, 255, 0.6) 0 0 10px;
 }
 body > header:first-child > section:first-child a:hover {
     color: rgba(64, 192, 255, 1);
