@@ -143,16 +143,16 @@ while (pos < len)
 }
 ```
 
-It get current character and check if it is a brace ("{" or "}"). Append the character if it is not.
+It get current character and check if it is a brace ("\{" or "\}"). Append the character if it is not.
 
-For left brace ("{"), we need break this while loop to get the format item.
+For left brace ("\{"), we need break this while loop to get the format item.
 
 ```csharp
 pos--;
 break;
 ```
 
-However, we need convert to normal character left brace ("{") if it is 2 left braces ("{{"). So we need update it as following.
+However, we need convert to normal character left brace ("\{") if it is 2 left braces ("\{\{"). So we need update it as following.
 
 ```csharp
 if (pos < len && format[pos] == '{')
