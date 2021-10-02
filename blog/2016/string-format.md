@@ -164,7 +164,7 @@ else
 }
 ```
 
-As same as right brace ("}"). We need convert to normal one for 2 right braces ("{{") and throw exception if there is only one.
+As same as right brace ("\}"). We need convert to normal one for 2 right braces ("\{\{") and throw exception if there is only one.
 
 ```csharp
 if (pos < len && format[pos] == '}')
