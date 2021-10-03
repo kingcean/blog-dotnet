@@ -82,9 +82,13 @@ var site = {};
                 articleStr = "<h1>" + item.name + "</h1><section><em>Loading...</em></section>";
                 r.list.some(function (item) {
                     if (!item || item.invalid || item.id !== id) return false;
-                    $.get("/blog" + item.url).then(function (r2) {
+                    var relaPath = "/blog";
+                    try {
+                        if (location.pathname.endsWith("/blog/")) relaPath = ".";
+                    } catch (ex) {}
+                    $.get(relaPath + item.url).then(function (r2) {
                         var md = new Remarkable();
-                        r2 = r2.replace(/\(.\//g, "(/blog/" + item.dir + "/");
+                        r2 = r2.replace(/\(.\//g, "(" + relaPath + "/" + item.dir + "/");
                         cntEle.innerHTML = "<h1>" + item.name + "</h1><section>" + md.render(r2) + "</section>" + cntStr;
                     }, function (r) {
                         cntEle.innerHTML = "<h1>" + item.name + "</h1><section><em>Load failed.</em></section>" + cntStr;
