@@ -88,7 +88,7 @@ var site = {};
                     } catch (ex) {}
                     $.get(relaPath + item.url).then(function (r2) {
                         var md = new Remarkable();
-                        r2 = r2.replace(/\(.\//g, "(" + relaPath + "/" + item.dir + "/");
+                        r2 = r2.replace(/\(.\//g, "(" + relaPath + item.dir + "/");
                         cntEle.innerHTML = "<h1>" + item.name + "</h1><section>" + md.render(r2) + "</section>" + cntStr;
                     }, function (r) {
                         cntEle.innerHTML = "<h1>" + item.name + "</h1><section><em>Load failed.</em></section>" + cntStr;
