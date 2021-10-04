@@ -34,6 +34,9 @@ body > section > section a, body > section > section a:visited {
 body > section > section a:active, body > section > section a:hover {
     transition: 0.1s;
 }
+body > section, body > header, body > footer{
+    padding: 0 20px;
+}
 
 /* Header */
 body > header:first-child {
