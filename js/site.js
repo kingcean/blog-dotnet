@@ -98,8 +98,16 @@ var site = {};
             }
 
             cntStr = "<h1>" + r.name + "</h1><ul>";
+            var year = null;
             r.list.forEach(function (item) {
                 if (!item || item.invalid) return;
+                if (typeof item.date === "string" && item.date.length > 3)
+                {
+                    var y = item.date.substring(0, 4);
+                    if (y !== year) cntStr += "<li class=\"grouping-header\">" + y + "</li>";
+                    year = y;
+                }
+
                 cntStr += "<li><a href='?" + item.id + "'>" + item.name + "</a></li>";
             });
             cntStr += "</ul>";

@@ -18,6 +18,7 @@
     position: relative;
     float: none;
     cursor: default;
+    user-select: text;
 }
 #blog_content > ul, #blog_content > ul > li {
     font-size: 16px;
@@ -25,16 +26,47 @@
     list-style: none;
 }
 #blog_content > ul {
-    padding: 14px 19px;
+    padding: 0;
     margin: 0;
-    border: 1px solid #666;
-    border-radius: 4px;
     float: none;
 }
 #blog_content > ul > li {
     font-size: 16px;
     padding: 0;
-    margin: 8px 0;
+    margin: 4px 0;
+}
+#blog_content > ul > li.grouping-header {
+    color: #999;
+    padding: 0 20px;
+    cursor: default;
+    user-select: none;
+}
+#blog_content > ul > li + li.grouping-header {
+    padding-top: 20px;
+}
+#blog_content > ul > li > a, #blog_content > ul > li > a:visited {
+    line-height: 38px;
+    background-color: #282828;
+    padding: 0 19px;
+    margin: 0;
+    border: 1px solid #333;
+    border-radius: 4px;
+    display: block;
+    transition: 0.6s;
+}
+#blog_content > ul > li > a:hover {
+    background-color: #333;
+    border-color: #444;
+    text-decoration: none;
+    transition: 0.1s;
+    box-shadow: black 1px 1px 4px;
+}
+#blog_content > ul > li > a:active {
+    background-color: #222;
+    border-color: #444;
+    text-decoration: none;
+    transition: 0.1s;
+    box-shadow: black 0 0 2px;
 }
 #blog_content > section {
     font-size: 16px;
@@ -46,9 +78,15 @@
 }
 #blog_content > section > pre {
     background-color: rgba(128, 128, 128, 0.1);
-    padding: 10px;
+    padding: 9px;
+    border: 1px solid transparent;
     border-radius: 4px;
     overflow-x: auto;
+    transition: 0.4s;
+}
+#blog_content > section > pre:hover {
+    border-color: rgba(128, 128, 128, 0.2);
+    transition: 0.2s;
 }
 #blog_content > section + h1 {
     color: #CCC;
@@ -76,5 +114,34 @@
 }
 #blog_content > section + h1 + ul > li,
 #blog_content > section + h1 + ul + h2 + ul > li {
+    margin: 8px 0;
     position: relative;
+}
+#blog_content > section + h1 + ul > li > a, #blog_content > section + h1 + ul > li > a:visited,
+#blog_content > section + h1 + ul + h2 + ul > li > a, #blog_content > section + h1 + ul + h2 + ul > li > a:visited {
+    line-height: normal;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    border: 0 none transparent;
+}
+#blog_content > section + h1 + ul > li > a:hover,
+#blog_content > section + h1 + ul + h2 + ul > li > a:hover {
+    text-decoration: underline;
+    background: transparent;
+    box-shadow: none;
+}
+#blog_content > section + h1 + ul > li > a:active,
+#blog_content > section + h1 + ul + h2 + ul > li > a:active {
+    text-decoration: underline;
+    background: transparent;
+    box-shadow: none;
+}
+#blog_content > section + h1 + ul > li.grouping-header,
+#blog_content > section + h1 + ul + h2 + ul > li.grouping-header {
+    padding: 0;
+}
+#blog_content > section + h1 + ul > li + li.grouping-header,
+#blog_content > section + h1 + ul + h2 + ul > li + li.grouping-header {
+    padding-top: 20px;
 }
