@@ -6,6 +6,32 @@
     <meta property="og:image" content="images/bg/poster.jpg">
     <title>DotNet Dev - Kingcean.net</title>
     <link href="css/layout.css" rel="stylesheet" />
+    <style type="text/css">
+    #project-trivial {
+        background-image: url(images/bg/card-trivial.jpg);
+        height: 200px;
+    }
+    #project-trivial > img {
+        width: 80px; height: 80px;; position: absolute; top: 30px; left: 30px; transition: 0.4s;
+    }
+    #project-trivial > a {
+        font-size: 32px; font-weight: lighter; line-height: 50px; height: 50px; overflow: hidden; text-overflow: ellipsis; position: absolute; top: 20px; left: 150px;
+    }
+    #project-trivial > span {
+        line-height: 20px; max-width: 800px; max-height: 100px; overflow: hidden; text-overflow: ellipsis; position: absolute; top: 80px; left: 150px; transition: 0.4s;
+    }
+    @media screen and (max-width:800px) {
+        #project-trivial > img {
+            width: 48px; height: 48px; position: absolute; top: 20px; left: 20px;
+        }
+        #project-trivial > a {
+            font-size: 24px; line-height: 40px; height: 40px; overflow: hidden; text-overflow: ellipsis; position: absolute; top: 10px; right: 10px; left: 80px;
+        }
+        #project-trivial > span {
+            line-height: 20px; max-width: 800px; max-height: 140px; overflow: hidden; text-overflow: ellipsis; position: absolute; top: 50px; right: 10px; left: 80px;
+        }
+    }
+    </style>
     <script type="text/javascript">
     function showMoreProjects() {
         ["project-item-azure", "project-item-iqiyi"].forEach(function (ele, i) {
@@ -34,15 +60,15 @@
     </header>
     <section style="min-height: 640px; margin-bottom: 60px; ">
         <h2>Projects</h2>
-        <section style="background-image: url(images/bg/card-trivial.jpg); height: 200px; ">
-            <img alt="Trivial" src="images/logos/trivial.png" style="width: 80px; height: 80px;; position: absolute; top: 30px; left: 30px; " />
-            <a href="https://trivial.kingcean.net" style="font-size: 32px; font-weight: lighter; line-height: 50px; height: 50px; overflow: hidden; text-overflow: ellipsis; position: absolute; top: 20px; left: 150px; ">Trivial libraries</a>
-            <span style="line-height: 20px; max-width: 800px; max-height: 100px; overflow: hidden; text-overflow: ellipsis; position: absolute; top: 80px; left: 150px; ">A set of powerful development kit: JSON, tasks, OAuth, numerals, chemistry, barcode, etc.<br />Contain a lot of utilities, models and components, which are trivial but useful, to help you to focus on the business logic of your projects.</span>
+        <section id="project-trivial" >
+            <img alt="Trivial" src="images/logos/trivial.png" />
+            <a href="https://trivial.kingcean.net" >Trivial libraries</a>
+            <span>A set of powerful development kit: JSON, tasks, OAuth, numerals, chemistry, barcode, etc.<br />Contain a lot of utilities, models and components, which are trivial but useful, to help you to focus on the business logic of your projects.</span>
         </section>
         <section>
             <a class="link-tile-wide" href="https://github.com/nuscien/nuscien"><img alt="NuScien" src="images/logos/nuscien.png" ><span>NuScien</span>
             </a><a class="link-tile-wide" href="https://github.com/mmanela/diffplex"><img alt="DiffPlex" src="images/logos/diffplex.png" ><span>DiffPlex</span>
-            </a><a id="project-more" class="link-tile-wide" href="#" onclick="showMoreProjects();return false;" style="width: 60px; text-align: center; "><span>More…</span>
+            </a><a id="project-more" class="link-tile-wide grouping-more" href="#" onclick="showMoreProjects();return false;" ><span>More…</span>
             </a><a id="project-item-azure" class="link-tile-wide" href="https://azure.microsoft.com/en-us/services/azure-arc/" style="display: none; "><img alt="Azure" src="images/logos/azure.png" ><span>Azure Hybrid Data</span>
             </a><a id="project-item-iqiyi" class="link-tile-wide" href="https://uwp.if.iqiyi.com" style="display: none; "><img alt="iQIYI" src="images/logos/iqiyi.png" ><span>iQIYI UWP App</span>
             </a>
