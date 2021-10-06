@@ -33,11 +33,14 @@ var site = {};
         return id;
     };
 
-    site.head = function () {
+    site.head = function (ext, menu, needInsert) {
         var cntEle = document.createElement("header");
         cntEle.id = "page_head";
-        cntEle.innerHTML = '<section><h1><a href="http://kingcean.net/">Kingcean</a></h1><ul><li><a href="https://github.com/kingcean?tab=repositories">Repositories</a></li><li><a href="http://kingcean.net/blog">.NET Blogs</a></li><li><a href="http://kingcean.org/blog">Front-end Blogs</a></li></ul></section>';
-        document.body.appendChild(cntEle);
+        cntEle.innerHTML = "<section><h1><a href=\"https://kingcean." + ext + "\"><strong>Kingcean</strong><span>." + ext + "</span></a></h1><ul>"
+            + menu.map(ele => "<li><a href=\"" + ele.url + "\">" + ele.name + "</a></li>").join("")
+            + "</ul></section>";
+        if (needInsert) document.body.insertBefore(cntEle, document.body.children[0]);
+        else document.body.appendChild(cntEle);
     };
 
     site.blogs = function () {
