@@ -63,6 +63,7 @@ body > header:first-child > section:first-child > h1 {
     margin: 0 80px 0 0;
     display: inline-block;
     vertical-align: top;
+    user-select: none;
 }
 body > header:first-child > section:first-child > h1 > a:first-child > strong:first-child + span {
     font-weight: lighter;
@@ -78,6 +79,7 @@ body > header:first-child > section:first-child > h1 + ul {
     display: inline-block;
     list-style: none;
     overflow: hidden;
+    user-select: none;
 }
 body > header:first-child > section:first-child > h1 + ul > li {
     font-weight: normal;
