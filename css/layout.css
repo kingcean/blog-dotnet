@@ -45,6 +45,7 @@ body > header:first-child {
     background-image: url(../images/bg/title.jpg);
     background-position: center top;
     background-repeat: no-repeat;
+    white-space: nowrap;
 }
 body > header:first-child > section:first-child {
     height: 60px;
@@ -74,10 +75,12 @@ body > header:first-child > section:first-child > h1 + ul {
     font-size: 16px;
     line-height: 60px;
     height: 60px;
+    max-width: 560px;
     padding: 4px 0;
     margin: 0;
     display: inline-block;
     list-style: none;
+    white-space: nowrap;
     overflow: hidden;
     user-select: none;
 }
@@ -129,11 +132,17 @@ body > header:first-child + header {
 }
 @media screen and (max-width:800px) {
     body > header:first-child {
-        height: 120px;
+        height: 112px;
     }
     body > header:first-child > section:first-child > h1,
     body > header:first-child > section:first-child > h1 + ul {
         display: block;
+    }
+    body > header:first-child > section:first-child > h1 + ul {
+        height: 52px;
+        max-width: none;
+        padding: 0;
+        overflow-x: overlay;
     }
     body > header:first-child > section:first-child > h1 + ul > li > a,
     body > header:first-child > section:first-child > h1 + ul > li > a:visited {
@@ -156,7 +165,8 @@ body > footer > section > div.x-copyright {
     margin: 0;
     position: absolute;
     top: 60px;
-    left: 0; 
+    left: 0;
+    user-select: none;
 }
 body > footer > section > div.x-copyright > img:first-child {
     background-color: #CCC;
@@ -172,6 +182,7 @@ body > footer > section > div.x-copyright > img:first-child + span {
     height: 22px;
     padding-right: 1px;
     display: block;
+    cursor: default;
 }
 
 /* Body */
