@@ -19,7 +19,7 @@ a:active {
     color: #8CE;
     text-decoration: underline;
 }
-code {
+code, code a {
     font-family: "Cascadia Code", "Consolas", "Segoe UI", "Microsoft Yahei", "Microsoft JhengHei", "Tahoma", "Helvetica Neue", "Arial", "Geneva", "Verdana", sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
 }
 body > header > section, body > footer > section {
