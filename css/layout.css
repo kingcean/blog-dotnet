@@ -19,7 +19,7 @@ a:active {
     color: #8CE;
     text-decoration: underline;
 }
-code, code a {
+code, code a, code span {
     font-family: "Cascadia Code", "Consolas", "Segoe UI", "Microsoft Yahei", "Microsoft JhengHei", "Tahoma", "Helvetica Neue", "Arial", "Geneva", "Verdana", sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
 }
 body > header > section, body > footer > section {
@@ -245,18 +245,6 @@ a.link-tile-wide.grouping-more, a.link-tile-wide.grouping-more:visited {
     width: 60px;
     text-align: center; 
 }
-@media screen and (max-width:800px) {
-    a.link-tile-wide, a.link-tile-wide:visited {
-        width: auto;
-        margin: 0 0 4px 0;
-        display: block;
-    }
-    a.link-tile-wide.grouping-more, a.link-tile-wide.grouping-more:visited {
-        width: 80px;
-        padding: 16px;
-        text-align: center; 
-    }
-}
 a.link-tile-wide:hover {
     color: #EEE;
     text-decoration: none;
@@ -298,4 +286,78 @@ a.link-tile-wide > span {
     line-height: 24px;
     vertical-align: middle;
     display: inline-block;
+}
+a.link-long-button, a.link-long-button:visited {
+    color: #CCC;
+    font-size: 18px;
+    text-decoration: none;
+    line-height: 20px;
+    background-color: #282828;
+    padding: 24px;
+    margin: 0 0 8px 0;
+    border: 1px solid #333;
+    border-radius: 4px;
+    display: block;
+}
+a.link-long-button:hover {
+    color: #EEE;
+    text-decoration: none;
+    background-color: #333;
+    border-color: #555;
+    box-shadow: #111 1px 1px 4px;
+}
+a.link-long-button:active {
+    color: #9EF;
+    background-color: #282828;
+    text-decoration: none;
+    border-color: #444;
+    box-shadow: #111 0 0 4px;
+}
+a.link-long-button > img {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    margin: 0 8px 0 0;
+    vertical-align: middle;
+    display: inline-block;
+}
+a.link-long-button > svg, a.link-long-button:visited > svg {
+    fill: #CCC;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    margin: 0 8px 0 0;
+    vertical-align: middle;
+    display: inline-block;
+}
+a.link-long-button:hover > svg {
+    fill: #EEE;
+}
+a.link-long-button:active > svg {
+    fill: #9EF;
+}
+a.link-long-button > span {
+    line-height: 24px;
+    vertical-align: middle;
+    display: inline-block;
+}
+a.link-long-button > span > span, a.link-tile-wide > span > span {
+    color: #888;
+    font-size: 16px;
+    transition: 0.4s;
+}
+a.link-long-button:hover > span > span, a.link-tile-wide:hover > span > span {
+    color: #999;
+}
+@media screen and (max-width:800px) {
+    a.link-tile-wide, a.link-tile-wide:visited {
+        width: auto;
+        margin: 0 0 4px 0;
+        display: block;
+    }
+    a.link-tile-wide.grouping-more, a.link-tile-wide.grouping-more:visited {
+        width: 80px;
+        padding: 16px;
+        text-align: center; 
+    }
 }
