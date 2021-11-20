@@ -1,6 +1,6 @@
 body {
     color: #DDD;
-    font-family: 'Segoe UI', '微软雅黑', 'Microsoft JhengHei', Tahoma, "Helvetica Neue", Arial, Geneva, Verdana, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: 'Segoe UI', 'Microsoft Yahei', 'Microsoft JhengHei', Tahoma, "Helvetica Neue", Arial, Geneva, Verdana, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 14px;
     background-color: #222;
     padding: 0;
@@ -133,15 +133,17 @@ body > header:first-child + header {
 @media screen and (max-width:800px) {
     body > header:first-child {
         height: 112px;
+        padding: 0;
     }
-    body > header:first-child > section:first-child > h1,
-    body > header:first-child > section:first-child > h1 + ul {
+    body > header:first-child > section:first-child > h1 {
+        padding: 0 20px;
         display: block;
     }
     body > header:first-child > section:first-child > h1 + ul {
         height: 52px;
         max-width: none;
-        padding: 0;
+        padding: 0 10px;
+        display: block;
         overflow-x: overlay;
     }
     body > header:first-child > section:first-child > h1 + ul > li > a,
