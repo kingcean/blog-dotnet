@@ -1,13 +1,13 @@
 #blog_content {
     font-weight: normal;
-    max-width: 1000px;
+    max-width: 1200px;
     min-height: 600px;
-    padding: 0;
-    margin: 20px auto 80px auto;
+    padding: 20px;
+    margin: 0 auto 60px auto;
     position: relative;
 }
 #blog_content > h1 {
-    color: #BDD;
+    color: #BBD;
     font-size: 36px;
     font-weight: lighter;
     font-style: normal;
@@ -24,49 +24,6 @@
     font-size: 16px;
     position: relative;
     list-style: none;
-}
-#blog_content > ul {
-    padding: 0;
-    margin: 0;
-    float: none;
-}
-#blog_content > ul > li {
-    font-size: 16px;
-    padding: 0;
-    margin: 4px 0;
-}
-#blog_content > ul > li.grouping-header {
-    color: #999;
-    padding: 0 20px;
-    cursor: default;
-    user-select: none;
-}
-#blog_content > ul > li + li.grouping-header {
-    padding-top: 20px;
-}
-#blog_content > ul > li > a, #blog_content > ul > li > a:visited {
-    line-height: 38px;
-    background-color: #282828;
-    padding: 0 19px;
-    margin: 0;
-    border: 1px solid #333;
-    border-radius: 4px;
-    display: block;
-    transition: 0.6s;
-}
-#blog_content > ul > li > a:hover {
-    background-color: #333;
-    border-color: #444;
-    text-decoration: none;
-    transition: 0.1s;
-    box-shadow: black 1px 1px 4px;
-}
-#blog_content > ul > li > a:active {
-    background-color: #222;
-    border-color: #444;
-    text-decoration: none;
-    transition: 0.1s;
-    box-shadow: black 0 0 2px;
 }
 #blog_content > section {
     font-size: 16px;

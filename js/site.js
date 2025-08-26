@@ -100,7 +100,7 @@ var site = {};
                 });
             }
 
-            cntStr = "<h1>" + r.name + "</h1><ul>";
+            cntStr = "<h1>" + r.name + "</h1><ul class=\"link-tile-compact\">";
             var year = null;
             r.list.forEach(function (item) {
                 if (!item || item.invalid) return;
