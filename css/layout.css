@@ -115,7 +115,7 @@ body > header:first-child > section:first-child > h1 + ul > li > a:visited {
 body > header:first-child > section:first-child > h1 + ul > li.state-sel > a,
 body > header:first-child > section:first-child > h1 + ul > li.state-sel > a:visited {
     color: #EEE;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.4);
     text-shadow: rgba(192, 240, 255, 0.6) 0 0 10px;
 }
 body > header:first-child > section:first-child a:hover {
@@ -236,18 +236,44 @@ body > section > ul, body > section > ul > li {
 }
 
 /* Links */
-a.link-tile-wide, a.link-tile-wide:visited, section.link-tile-wide > a, section.link-tile-wide > a:visited {
+a.link-tile-wide, a.link-tile-wide:visited,
+a.link-long-button, a.link-long-button:visited,
+a.link-button-normal, a.link-button-normal:visited,
+section.link-tile-wide > a, section.link-tile-wide > a:visited,
+button.link-button-normal, button.link-button-normal:visited {
     color: #CCC;
-    font-size: 18px;
     text-decoration: none;
-    line-height: 24px;
     background-color: #282828;
-    padding: 24px;
-    margin: 0 4px 4px 0;
     border-width: 1px;
     border-style: solid;
     border-color: #363636 #2E2E2E #2E2E2E #2E2E2E;
     border-radius: 4px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+a.link-tile-wide:hover, a.link-long-button:hover, a.link-button-normal:hover,
+section.link-tile-wide > a:hover, button.link-button-normal:hover {
+    color: #EEE;
+    text-decoration: none;
+    background-color: #333;
+    border-color: #555;
+    box-shadow: #111 1px 1px 4px;
+    transition: 0.1s;
+}
+a.link-tile-wide:active, a.link-long-button:active, a.link-button-normal:active,
+section.link-tile-wide > a:active, button.link-button-normal:active {
+    color: #9EF;
+    background-color: #282828;
+    text-decoration: none;
+    border-color: #444 #444 #4A4A4A #444;
+    box-shadow: #111 0 0 4px;
+    transition: 0.1s;
+}
+a.link-tile-wide, a.link-tile-wide:visited, section.link-tile-wide > a, section.link-tile-wide > a:visited {
+    font-size: 18px;
+    line-height: 24px;
+    padding: 24px;
+    margin: 0 4px 4px 0;
 }
 a.link-tile-wide, a.link-tile-wide:visited {
     width: 190px;
@@ -260,20 +286,10 @@ section.link-tile-wide > a, section.link-tile-wide > a:visited {
     display: block;
 }
 a.link-tile-wide:hover, section.link-tile-wide > a:hover {
-    color: #EEE;
-    text-decoration: none;
-    background-color: #333;
     padding: 22px 24px 26px 24px;
-    border-color: #555;
-    box-shadow: #111 1px 1px 4px;
 }
 a.link-tile-wide:active, section.link-tile-wide > a:active {
-    color: #9EF;
-    background-color: #282828;
     padding: 24px;
-    text-decoration: none;
-    border-color: #444 #444 #4A4A4A #444;
-    box-shadow: #111 0 0 4px;
 }
 a.link-tile-wide > img, section.link-tile-wide > a > img {
     width: 24px;
@@ -316,35 +332,23 @@ section.link-tile-wide > a.grouping-more:visited {
     width: 80px;
     text-align: center; 
 }
+a.link-button-normal, a.link-button-normal:visited,
+button.link-button-normal, button.link-button-normal:visited {
+    padding: 7px 15px;
+    display: inline-block;
+}
 a.link-long-button, a.link-long-button:visited {
-    color: #CCC;
     font-size: 18px;
-    text-decoration: none;
     line-height: 20px;
-    background-color: #282828;
     padding: 24px;
     margin: 0 0 8px 0;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #363636 #2E2E2E #2E2E2E #2E2E2E;
-    border-radius: 4px;
     display: block;
 }
 a.link-long-button:hover {
-    color: #EEE;
-    text-decoration: none;
-    background-color: #333;
     padding: 22px 24px 26px 24px;
-    border-color: #555;
-    box-shadow: #111 1px 1px 4px;
 }
 a.link-long-button:active {
-    color: #9EF;
-    background-color: #282828;
-    text-decoration: none;
     padding: 24px;
-    border-color: #444 #444 #4A4A4A #444;
-    box-shadow: #111 0 0 4px;
 }
 a.link-long-button > img {
     width: 24px;
