@@ -200,13 +200,30 @@ body > footer > section > div.x-copyright > img:first-child + span {
 body > section > section,
 body > section > h1,
 body > section > h2,
-body > section > h3 {
-    font-weight: normal;
+body > section > h3,
+body > section > h4 {
     max-width: 1200px;
     padding: 0;
     margin: 20px auto;
     position: relative;
     box-sizing: content-box;
+}
+body > section > h1,
+body > section > h2 {
+    color: #D3D3D3;
+    font-weight: 200;
+}
+body > section > h1,
+body > section > h2,
+body > section > h3,
+body > section > h4 {
+    cursor: default;
+    user-select: none;
+}
+body > section > section,
+body > section > h3,
+body > section > h4 {
+    font-weight: normal;
 }
 body > section > h1, body > section > section > h1 {
     font-size: 24px;
@@ -216,20 +233,23 @@ body > section > h2, body > section > section > h2 {
     font-size: 20px;
     line-height: 28px;
 }
-body > section > h3, body > section > section > h3 {
-    font-size: 18px;
-    line-height: 24px;
-}
 body > section > h3 {
     font-size: 16px;
     font-weight: bolder;
     font-style: normal;
     line-height: 30px;
     margin: 0;
-    cursor: default;
+}
+body > section > section > h3 {
+    font-size: 18px;
+    line-height: 24px;
 }
 body > section > h3 > svg, body > section > h3 > span, body > section > h3 > a {
     vertical-align: middle;
+}
+body > section > h4, body > section > section > h4 {
+    font-size: 16px;
+    line-height: 24px;
 }
 body > section > ul, body > section > ul > li {
     background-color: transparent;
@@ -243,10 +263,10 @@ section.link-tile-wide > a, section.link-tile-wide > a:visited,
 button.link-button-normal, button.link-button-normal:visited {
     color: #CCC;
     text-decoration: none;
-    background-color: #282828;
+    background-color: rgba(127, 127, 127, 0.06);
     border-width: 1px;
     border-style: solid;
-    border-color: #363636 #2E2E2E #2E2E2E #2E2E2E;
+    border-color: rgba(127, 127, 127, 0.16) rgba(127, 127, 127, 0.08) rgba(127, 127, 127, 0.08) rgba(127, 127, 127, 0.08);
     border-radius: 4px;
     cursor: pointer;
     transition: 0.4s;
@@ -256,17 +276,25 @@ section.link-tile-wide > a:hover, button.link-button-normal:hover {
     color: #EEE;
     text-decoration: none;
     background-color: #333;
-    border-color: #555;
+    border-width: 1px;
+    border-color: rgba(127, 127, 127, 0.4) rgba(127, 127, 127, 0.3) rgba(127, 127, 127, 0.3) rgba(127, 127, 127, 0.3);
     box-shadow: #111 1px 1px 4px;
     transition: 0.1s;
 }
 a.link-tile-wide:active, a.link-long-button:active, a.link-button-normal:active,
 section.link-tile-wide > a:active, button.link-button-normal:active {
     color: #9EF;
-    background-color: #282828;
+    background-color: rgba(127, 127, 127, 0.08);
     text-decoration: none;
-    border-color: #444 #444 #4A4A4A #444;
+    border-width: 1px;
+    border-color: rgba(127, 127, 127, 0.2) rgba(127, 127, 127, 0.2) rgba(127, 127, 127, 0.3) rgba(127, 127, 127, 0.2);
     box-shadow: #111 0 0 4px;
+    transition: 0.1s;
+}
+a.link-tile-wide:focus-visible, a.link-long-button:focus-visible, a.link-button-normal:focus-visible,
+section.link-tile-wide > a:focus-visible, button.link-button-normal:focus-visible {
+    outline: 2px solid rgba(102, 221, 255, 0.7);
+    outline-offset: 1px;
     transition: 0.1s;
 }
 a.link-tile-wide, a.link-tile-wide:visited, section.link-tile-wide > a, section.link-tile-wide > a:visited {
@@ -451,7 +479,7 @@ ul.link-tile-compact > li > a, ul.link-tile-compact > li > a:visited {
     margin: 0;
     border-width: 1px;
     border-style: solid;
-    border-color: #363636 #2E2E2E #2E2E2E #2E2E2E;
+    border-color: rgba(127, 127, 127, 0.16) rgba(127, 127, 127, 0.08) rgba(127, 127, 127, 0.08) rgba(127, 127, 127, 0.08);
     border-radius: 4px;
     border-radius: 4px;
     display: block;
@@ -461,7 +489,7 @@ ul.link-tile-compact > li > a:hover {
     color: #9EF;
     background-color: #333;
     padding: 0 17px;
-    border-color: #555;
+    border-color: rgba(127, 127, 127, 0.4);
     text-decoration: none;
     transition: 0.1s;
     box-shadow: #111 1px 1px 4px;
@@ -470,7 +498,7 @@ ul.link-tile-compact > li > a:active {
     color: #8CE;
     background-color: #222;
     padding: 0 19px;
-    border-color: #444 #444 #4A4A4A #444;
+    border-color: rgba(127, 127, 127, 0.2) rgba(127, 127, 127, 0.2) rgba(127, 127, 127, 0.3) rgba(127, 127, 127, 0.2);
     text-decoration: none;
     transition: 0.1s;
     box-shadow: #111 0 0 4px;
