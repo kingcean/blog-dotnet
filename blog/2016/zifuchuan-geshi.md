@@ -52,7 +52,7 @@ public StringBuilder Append(char value, int repeatCount = 1);
 public StringBuilder Append(string value);
 ```
 
-当然，该成员方法也包含一些重载，以提供其它类型的插入。当然，也可以直接插入一个 `object` 类型，其会被转换为 `string` 并被插入，当其为 `null` 时则什么也不会发生/
+当然，该成员方法也包含一些重载，以提供其它类型的插入。当然，也可以直接插入一个 `object` 类型，其会被转换为 `string` 并被插入，当其为 `null` 时则什么也不会发生。
 
 ```csharp
 public StringBuilder Append(object value);

@@ -4,9 +4,9 @@
 
 通过 Windows 10 设备，无论是电脑，抑或移动设备（如手机），甚至 IoT 设备，都可以通过 USB、蓝牙、Wi-Fi、有线局域网等方式，连接到 Arduino 开发板，以实现以下具体的访问方式。
 
-- GPIO，包括数字和模拟的读和写，以及监听Pin的回报和修改
-- 通过 I2C 进行数据的发送和接收
-- 通过 Firmata SysEx 定制命令
+- GPIO，包括数字和模拟的读和写，以及监听Pin的回报和修改。
+- 通过 I2C 进行数据的发送和接收。
+- 通过 Firmata SysEx 定制命令。
 
 由于是采用 Windows 通用应用，即 UWP，因此可以使用任何 WinRT 支持的语言，如 C#、C++、JavaScript 等。
 
@@ -21,7 +21,7 @@
 - 协议层 – Firmata。 
 提供消息信息的传递。
 - 物理通信层 – 二进制流。
-Windows 设备和Arduino 设备之间的原始数据通信。
+Windows 设备和 Arduino 设备之间的原始数据通信。
 
 ![3 Layers](./images/Arduino3Layers.jpg)
 
@@ -254,7 +254,7 @@ _arduino.DeviceReady += Setup;
 
 ![Turn on LED](./images/WP_20160401_10_10_40_Pro_LI_Screen.jpg)
 
-可以看到，正如我们想想的那样。
+可以看到，正如我们想象的那样。
 
 ![LED id on](./images/WP_20160401_09_43_38_Pro_LI_Screen.jpg)
 
