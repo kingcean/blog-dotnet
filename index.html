@@ -7,6 +7,11 @@
     <title>DotNet Dev - Kingcean.net</title>
     <link href="css/layout.css" rel="stylesheet" />
     <style type="text/css">
+    body {
+        background-image: url(./images/bg/title-shadow.png);
+        background-position: center 60px;
+        background-repeat: no-repeat;
+    }
     #project-trivial {
         background-image: url(images/bg/card-trivial.jpg);
         height: 200px; border-radius: 4px; user-select: none;
@@ -33,6 +38,9 @@
         color: #8CE;
     }
     @media screen and (max-width:800px) {
+        body {
+            background-image: none;
+        }
         #project-trivial > img {
             width: 48px; height: 48px; position: absolute; top: 20px; left: 20px;
         }
@@ -47,6 +55,9 @@
         }
     }
     @media screen and (max-width:600px) {
+        body {
+            background-image: none;
+        }
         #project-trivial > span + a {
             display: none;
         }
