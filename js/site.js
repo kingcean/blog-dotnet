@@ -82,7 +82,7 @@ var site = {};
             var articleStr = "";
             if (curItem) {
                 var item = curItem;
-                articleStr = "<h1>" + item.name + "</h1><section><em>Loading...</em></section>";
+                articleStr = "<h1>" + item.name + "</h1><section class=\"x-part-blog-loading\"><em>Loading...</em></section>";
                 r.list.some(function (item) {
                     if (!item || item.invalid || item.id !== id) return false;
                     var relaPath = "/blog";
@@ -92,9 +92,23 @@ var site = {};
                     $.get(relaPath + item.url).then(function (r2) {
                         var md = new Remarkable();
                         r2 = r2.replace(/\(.\//g, "(" + relaPath + item.dir + "/");
-                        cntEle.innerHTML = "<h1>" + item.name + "</h1><section>" + md.render(r2) + "</section>" + cntStr;
+                        var cntStr2 = "";
+                        if (typeof item.date === "string" && item.date.length > 7 && item.date.indexOf("-") < 0) {
+                            var time = new Date(parseInt(item.date.substring(0, 4)), parseInt(item.date.substring(4, 6)) - 1, parseInt(item.date.substring(6, 8)));
+                            if (!isNaN(time))
+                                cntStr2 += "<time datetime=\"" + time.getFullYear().toString(10) + "-" + (time.getMonth() + 1).toString(10) + "-" + time.getDate().toString(10) + "\">" + time.toLocaleDateString() + "</time>";
+                        }
+
+                        if (item.categories && item.categories instanceof Array && item.categories.length > 0) {
+                            cntStr2 += "<span>" + (cntStr2 ? " · " : "") + item.categories.map(function (c) {
+                                return "<span>" + c + "</span>";
+                            }).join(" · ") + "</span>";
+                        }
+
+                        if (cntStr2) cntStr2 = "<section class=\"x-part-blog-note\">" + cntStr2 + "</section>";
+                        cntEle.innerHTML = "<h1>" + item.name + "</h1>" + cntStr2 + "<section>" + md.render(r2) + "</section>" + cntStr;
                     }, function (r) {
-                        cntEle.innerHTML = "<h1>" + item.name + "</h1><section><em>Load failed.</em></section>" + cntStr;
+                        cntEle.innerHTML = "<h1>" + item.name + "</h1><section class=\"x-part-blog-error\"><em>Load failed.</em></section>" + cntStr;
                     });
                     return true;
                 });
@@ -104,8 +118,7 @@ var site = {};
             var year = null;
             r.list.forEach(function (item) {
                 if (!item || item.invalid) return;
-                if (typeof item.date === "string" && item.date.length > 3)
-                {
+                if (typeof item.date === "string" && item.date.length > 3) {
                     var y = item.date.substring(0, 4);
                     if (y !== year) cntStr += "<li class=\"grouping-header\">" + y + "</li>";
                     year = y;

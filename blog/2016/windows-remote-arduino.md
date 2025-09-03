@@ -244,7 +244,7 @@ So we can control the LED on/off on the breadboard.
 Update the Setup() method as following to update digital pin 6.
 
 ```csharp
-private int _pin = 6;
+private var _pin = 6;
 
 public void Setup()
 {

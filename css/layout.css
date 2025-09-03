@@ -161,7 +161,7 @@ body > header:first-child + header {
     body > header:first-child > section:first-child > h1 + ul > li.state-sel > a,
     body > header:first-child > section:first-child > h1 + ul > li.state-sel > a:visited {
         background-color: #222;
-        border-color: #393939 #363636 transparent #363636;
+        border-color: #393939 #363636 #222222 #363636;
     }
 }
 

@@ -16,7 +16,7 @@
         {
             "name": "Windows 10 编程遥控 Arduino",
             "url": "/2016/windows-yaokong-arduino.md",
-            "categories": [],
+            "categories": ["iot"],
             "date": "20160325"
         },
         {
@@ -28,7 +28,7 @@
         {
             "name": "UWP 应用中的语音识别和合成",
             "url": "/2016/uwp-yuyin.md",
-            "categories": [],
+            "categories": ["windows-app", "asr", "tts"],
             "date": "20160818"
         }
     ]

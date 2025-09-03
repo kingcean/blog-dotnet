@@ -16,7 +16,7 @@
         {
             "name": "Windows 10 remote Arduino",
             "url": "/2016/windows-remote-arduino.md",
-            "categories": [],
+            "categories": ["iot"],
             "date": "20160325"
         },
         {
@@ -28,7 +28,7 @@
         {
             "name": "Speech in UWP",
             "url": "/2016/speech-in-uwp.md",
-            "categories": [],
+            "categories": ["windows-app", "asr", "tts"],
             "date": "20160818"
         }
     ]

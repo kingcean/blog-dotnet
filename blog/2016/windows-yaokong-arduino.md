@@ -272,7 +272,7 @@ _arduino.DeviceReady += Setup;
 将之前的 `Setup()` 方法进行如下修改，从而更新数字 Pin 6 的模式和值。
 
 ```csharp
-private int _pin = 6;
+private var _pin = 6;
 
 public void Setup()
 {

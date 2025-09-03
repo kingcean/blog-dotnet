@@ -195,7 +195,7 @@ if (pos == len || (ch = format[pos]) < '0' || ch > '9')
 Then need resolve the value of index by getting the character one by one for computing until it is not a number. The maximum value of index is 999,999.
 
 ```csharp
-int index = 0;
+var index = 0;
 do
 {
     index = index * 10 + ch - '0';
