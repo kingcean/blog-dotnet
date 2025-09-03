@@ -20,7 +20,7 @@ a:active {
     text-decoration: underline;
 }
 code, code a, code span {
-    font-family: "Cascadia Code", "Consolas", "Segoe UI", "Microsoft Yahei", "Microsoft JhengHei", "Tahoma", "Helvetica Neue", "Arial", "Geneva", "Verdana", sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: "Cascadia Code", "Consolas", "Segoe UI", "Microsoft Yahei", "Microsoft JhengHei", monospace, "Tahoma", "Helvetica Neue", "Arial", "Geneva", "Verdana", sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
 }
 body > header > section, body > footer > section {
     max-width: 1200px;
