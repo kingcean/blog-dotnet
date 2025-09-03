@@ -34,7 +34,7 @@ body > section > section a, body > section > section a:visited {
 body > section > section a:active, body > section > section a:hover {
     transition: 0.1s;
 }
-body > section, body > header, body > footer {
+body > section, body > main, body > header, body > footer {
     padding: 0 20px;
 }
 
@@ -166,6 +166,7 @@ body > header:first-child + header {
 }
 
 /* Footer */
+body > main + footer,
 body > section + footer,
 body > script + footer {
     height: 340px;
@@ -202,6 +203,7 @@ body > footer > section > div.x-copyright > img:first-child + span {
 }
 
 /* Body */
+body > main,
 body > section > section,
 body > section > h1,
 body > section > h2,
