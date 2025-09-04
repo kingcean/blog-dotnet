@@ -41,6 +41,9 @@
     cursor: default;
     user-select: none;
 }
+#blog_content > h1 + section.x-part-blog-note > span::before {
+    content: "  ·  ";
+}
 #blog_content > section img {
     max-width: 720px;
 }
