@@ -150,6 +150,7 @@ body > header:first-child + header {
         padding: 0 10px;
         display: block;
         overflow-x: overlay;
+        scrollbar-color: rgba(128, 128, 128, 0.2) transparent;
     }
     body > header:first-child > section:first-child > h1 + ul > li > a,
     body > header:first-child > section:first-child > h1 + ul > li > a:visited {
@@ -276,10 +277,10 @@ section.link-tile-wide > a, section.link-tile-wide > a:visited,
 button.link-button-normal, button.link-button-normal:visited {
     color: #CCC;
     text-decoration: none;
-    background-color: rgba(127, 127, 127, 0.06);
+    background-color: rgba(128, 128, 128, 0.06);
     border-width: 1px;
     border-style: solid;
-    border-color: rgba(127, 127, 127, 0.16) rgba(127, 127, 127, 0.08) rgba(127, 127, 127, 0.08) rgba(127, 127, 127, 0.08);
+    border-color: rgba(128, 128, 128, 0.16) rgba(128, 128, 128, 0.08) rgba(128, 128, 128, 0.08) rgba(128, 128, 128, 0.08);
     border-radius: 4px;
     cursor: pointer;
     transition: 0.4s;
@@ -290,17 +291,17 @@ section.link-tile-wide > a:hover, button.link-button-normal:hover {
     text-decoration: none;
     background-color: #333;
     border-width: 1px;
-    border-color: rgba(127, 127, 127, 0.4) rgba(127, 127, 127, 0.3) rgba(127, 127, 127, 0.3) rgba(127, 127, 127, 0.3);
+    border-color: rgba(128, 128, 128, 0.4) rgba(128, 128, 128, 0.3) rgba(128, 128, 128, 0.3) rgba(128, 128, 128, 0.3);
     box-shadow: #111 1px 1px 4px;
     transition: 0.1s;
 }
 a.link-tile-wide:active, a.link-long-button:active, a.link-button-normal:active,
 section.link-tile-wide > a:active, button.link-button-normal:active {
     color: #9EF;
-    background-color: rgba(127, 127, 127, 0.08);
+    background-color: rgba(128, 128, 128, 0.08);
     text-decoration: none;
     border-width: 1px;
-    border-color: rgba(127, 127, 127, 0.2) rgba(127, 127, 127, 0.2) rgba(127, 127, 127, 0.3) rgba(127, 127, 127, 0.2);
+    border-color: rgba(128, 128, 128, 0.2) rgba(128, 128, 128, 0.2) rgba(128, 128, 128, 0.3) rgba(128, 128, 128, 0.2);
     box-shadow: #111 0 0 4px;
     transition: 0.1s;
 }
@@ -492,7 +493,7 @@ ul.link-tile-compact > li > a, ul.link-tile-compact > li > a:visited {
     margin: 0;
     border-width: 1px;
     border-style: solid;
-    border-color: rgba(127, 127, 127, 0.16) rgba(127, 127, 127, 0.08) rgba(127, 127, 127, 0.08) rgba(127, 127, 127, 0.08);
+    border-color: rgba(128, 128, 128, 0.16) rgba(128, 128, 128, 0.08) rgba(128, 128, 128, 0.08) rgba(128, 128, 128, 0.08);
     border-radius: 4px;
     border-radius: 4px;
     display: block;
@@ -502,7 +503,7 @@ ul.link-tile-compact > li > a:hover {
     color: #9EF;
     background-color: #333;
     padding: 0 17px;
-    border-color: rgba(127, 127, 127, 0.4);
+    border-color: rgba(128, 128, 128, 0.4);
     text-decoration: none;
     transition: 0.1s;
     box-shadow: #111 1px 1px 4px;
@@ -511,7 +512,7 @@ ul.link-tile-compact > li > a:active {
     color: #8CE;
     background-color: #222;
     padding: 0 19px;
-    border-color: rgba(127, 127, 127, 0.2) rgba(127, 127, 127, 0.2) rgba(127, 127, 127, 0.3) rgba(127, 127, 127, 0.2);
+    border-color: rgba(128, 128, 128, 0.2) rgba(128, 128, 128, 0.2) rgba(128, 128, 128, 0.3) rgba(128, 128, 128, 0.2);
     text-decoration: none;
     transition: 0.1s;
     box-shadow: #111 0 0 4px;
