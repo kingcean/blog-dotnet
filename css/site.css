@@ -28,8 +28,8 @@
     cursor: default;
     user-select: text;
 }
-#blog_content > article > main > ul,
-#blog_content > article > main > ul > li,
+#blog_content > article > main > ul:first-child,
+#blog_content > article > main > ul:first-child > li,
 #blog_content > aside > nav > ul,
 #blog_content > aside > nav > ul > li {
     font-size: 16px;
