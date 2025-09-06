@@ -192,7 +192,7 @@ var site = {};
             setChildChildren("note", noteEles);
             var cnt = getChildModel("content");
             if (cnt) {
-                cnt.data = r2;
+                cnt.data = { value: r2 };
                 delete cnt.styleRefs;
                 delete cnt.children;
             }
@@ -203,6 +203,7 @@ var site = {};
             genNotification("Load failed.");
             context.refresh();
         });
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     function genMenu() {
@@ -359,8 +360,9 @@ var site = {};
                     onInit(c) {
                         var mdEle = c.element();
                         var mdModel = c.model();
-                        if (!mdEle || !mdModel || !mdModel.data) return;
-                        mdEle.innerHTML = marked.parse(mdModel.data);
+                        if (!mdEle || !mdModel || !mdModel.data || mdModel.data.done) return;
+                        mdModel.data.done = true;
+                        mdEle.innerHTML = marked.parse(mdModel.data.value);
                         var contentMenu = getChildModel("cntMenu");
                         if (!contentMenu) return;
                         var headers = getHeadings(mdEle);
