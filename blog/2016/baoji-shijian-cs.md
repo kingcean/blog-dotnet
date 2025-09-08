@@ -46,13 +46,12 @@ public class MultipleHitTask
 public class IndexEventArgs: EventArgs
 {
     /// <summary>
-    /// Gets the index.
+    /// Gets the zero-based index about the times processed before.
     /// </summary>
     public int Index { get; private set; }
  
     /// <summary>
-    /// Initializes a new instance
-    /// of the IndexEventArgs class.
+    /// Initializes a new instance of the IndexEventArgs class.
     /// </summary>
     /// <param name="index">The index.</param>
     public IndexEventArgs(int index)
@@ -72,11 +71,11 @@ public event EventHandler<IndexEventArgs> Processed;
 
 ```csharp
 var args = new IndexEventArgs(HitCount - 1);
-Processed(this, args);
+Processed?.Invoke(this, args);
 return true;
 ```
 
-当然，在触发事件之前，我们还要做一些判断，用以检测是否应当激活暴击状态。
+当然，在触发事件之前，我们还要做一些判断，用以检测是否应当激活暴击状态。即，通过分别判断时间和触发次数，来进行后续逻辑执行控制。
 
 ```csharp
 var now = DateTime.Now;
@@ -134,13 +133,11 @@ public class MultipleHitTask
     /// <summary>
     /// Processes the task.
     /// </summary>
-    /// <returns>true if match the condition to execute;
-    /// otherwise, false.</returns>
+    /// <returns>true if match the condition to execute; otherwise, false.</returns>
     public bool Process()
     {
         var now = DateTime.Now;
-        if (LatestProcess == null
-            || now - LatestProcess > Timeout)
+        if (LatestProcess == null || now - LatestProcess > Timeout)
         {
             HitCount = 0;
         }
@@ -149,7 +146,7 @@ public class MultipleHitTask
         if (HitCount <= Start || HitCount > End)
             return false;
         var args = new IndexEventArgs(HitCount - 1);
-        Processed(this, args);
+        Processed?.Invoke(this, args);
         return true;
     }
 }

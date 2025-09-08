@@ -43,13 +43,12 @@ The event is used to register to occur so that user can add the handler. The cur
 public class IndexEventArgs: EventArgs
 {
     /// <summary>
-    /// Gets the index.
+    /// Gets the zero-based index about the times processed before.
     /// </summary>
     public int Index { get; private set; }
  
     /// <summary>
-    /// Initializes a new instance
-    /// of the IndexEventArgs class.
+    /// Initializes a new instance of the IndexEventArgs class.
     /// </summary>
     /// <param name="index">The index.</param>
     public IndexEventArgs(int index)
@@ -73,7 +72,7 @@ Processed(this, args);
 return true;
 ```
 
-And we need add the checking logic.
+And we need add the checking logic with occurring time and counting.
 
 ```csharp
 var now = DateTime.Now;
@@ -129,8 +128,7 @@ public class MultipleHitTask
     /// <summary>
     /// Processes the task.
     /// </summary>
-    /// <returns>true if match the condition to execute;
-    /// otherwise, false.</returns>
+    /// <returns>true if match the condition to execute; otherwise, false.</returns>
     public bool Process()
     {
         var now = DateTime.Now;

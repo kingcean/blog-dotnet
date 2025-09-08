@@ -1,17 +1,19 @@
 // Simple blog engine.
-var site = {};
+let site = {};
 (function(site) {
 
-    var rootContext;
-    var info = {};
+    let rootContext;
+    let info = {};
+    let strings = {};
 
     function clearArray(arr) {
         while (arr.length > 0) arr.pop();
     }
 
-    function genHeadItem(ele) {
+    function genHeadItem(ele, level) {
         return {
             text: ele.innerText,
+            level: level,
             scroll() {
                 ele.scrollIntoView({ behavior: "smooth" });
             }
@@ -19,7 +21,7 @@ var site = {};
     }
 
     function genHeadModel(item, sub) {
-        var text = item.text;
+        let text = item.text;
         if (sub) text = "·　" + text;
         return {
             tagName: "li",
@@ -31,57 +33,45 @@ var site = {};
                         if (typeof item.scroll === 'function') item.scroll();
                     }
                 },
-                children: item.text
+                children: text
             }]
         }
     }
 
-    function getHeadings(ele) {
-        var col = [];
-        var names = ["h1", "h2", "h3", "h4", "h5", "h6"];
-        var offset = 0;
-        var eles = ele.getElementsByTagName(names[offset]);
-        if (!eles || eles.length < 1) {
-            offset++;
-            eles = ele.getElementsByTagName(names[offset]);
-            if (!eles || eles.length < 1) {
-                offset++;
-                eles = ele.getElementsByTagName(names[offset]);
-                if (!eles || eles.length < 1) {
-                    offset++;
-                    eles = ele.getElementsByTagName(names[offset]);
-                }
-
-                if (!eles || eles.length < 1) {
-                    offset++;
-                    eles = ele.getElementsByTagName(names[offset]);
-                }
+    function getHeadings(container) {
+        let arr = [];
+        for (let i = 0; i < container.children.length; i++) {
+            para = container.children[i];
+            if (!para || !para.tagName) continue;
+            let tagName = para.tagName.toLowerCase();
+            switch (tagName) {
+                case "h1":
+                case "h2":
+                case "h3":
+                case "h4":
+                case "h5":
+                case "h6":
+                    arr.push(genHeadItem(para, parseInt(tagName.replace("h", ""))));
+                    break;
             }
         }
 
-        if (!eles || eles.length < 1) return col;
-        offset++;
-        for (var i = 0; i < eles.length; i++) {
-            var item = eles[i];
-            if (!item) continue;
-            var v = genHeadItem(item);
-            col.push(v);
-            var sub = item.getElementsByTagName(names[offset]);
-            if (!sub || sub.length < 1) {
-                var offset2 = offset + 1;
-                if (offset2 <= names.lenght) sub = item.getElementsByTagName(names[offset2]);
-                if (!sub || sub.length < 1) continue;
-            }
+        return arr;
+    }
 
-            v.items = [];
-            for (var j = 0; j < sub.length; j++) {
-                var subItem = sub[j];
-                if (!subItem) continue;
-                v.items.push(genHeadItem(subItem));
+    function getHeadingLevels(arr) {
+        if (!arr || arr.length < 1) return [];
+        let list = [];
+        for (let level = 1; level < 7; level++) {
+            for (let i = 0; i < arr.length; i++) {
+                let item = arr[i];
+                if (!item || item.level != level) continue;
+                list.push(level);
+                break;
             }
         }
 
-        return col;
+        return list;
     }
 
     function getChildModel(key) {
@@ -92,7 +82,7 @@ var site = {};
     }
 
     function setChildChildren(key, children) {
-        var m = getChildModel(key);
+        let m = getChildModel(key);
         if (m) m.children = children;
         return m;
     }
@@ -110,7 +100,7 @@ var site = {};
     }
 
     function resetContentMenu() {
-        var m = getChildModel("cntMenu");
+        let m = getChildModel("cntMenu");
         if (!m) return undefined;
         m.children = [];
         m.style = { display: "none" };
@@ -119,15 +109,19 @@ var site = {};
     }
 
     function renderArticle(id) {
-        var context = rootContext;
+        let context = rootContext;
         if (!context) return;
         resetContentMenu();
         setChildChildren("note", undefined);
-        var item;
+        let relatedContainer = getChildModel("relatedContainer");
+        relatedContainer.style = { display: "none" };
+        let relatedList = getChildModel("relatedList");
+        relatedList.children = [];
+        let item;
         if (id) {
-            var list = info.list;
-            for (var i in list) {
-                var ele = list[i];
+            let list = info.list;
+            for (let i in list) {
+                let ele = list[i];
                 if (!ele || ele.id !== id) continue;
                 item = ele;
                 break;
@@ -136,7 +130,7 @@ var site = {};
 
         if (!item || item.invalid) {
             setChildChildren("title", info.name);
-            var cnt = getChildModel("content");
+            let cnt = getChildModel("content");
             if (cnt) {
                 delete cnt.data;
                 cnt.styleRefs = "x-part-blog-menu";
@@ -152,17 +146,27 @@ var site = {};
         }
 
         setChildChildren("title", item.name);
-        genNotification("Loading…");
+        genNotification(strings.loading || "Loading…");
         context.refresh();
-        var relaPath = "/blog";
+        let relaPath = "/blog";
         try {
             if (location.pathname.endsWith("/blog/")) relaPath = ".";
         } catch (ex) {}
         $.get(relaPath + item.url).then(function (r2) {
             r2 = r2.replace(/\(.\//g, "(" + relaPath + item.dir + "/");
-            var noteEles = [];
+            let header1 = "# " + item.name + "\n";
+            if (r2.startsWith(header1)) r2 = r2.substring(header1.length);
+            header1 = "# " + item.name + "\r\n";
+            if (r2.startsWith(header1)) r2 = r2.substring(header1.length);
+            if (item.end) {
+                let endTag = "\n<!-- " + item.end + " -->";
+                let endIndex = r2.lastIndexOf(endTag);
+                if (endIndex > 1) r2 = r2.substring(0, endIndex);
+            }
+
+            let noteEles = [];
             if (typeof item.date === "string" && item.date.length > 7 && item.date.indexOf("-") < 0) {
-                var time = new Date(parseInt(item.date.substring(0, 4)), parseInt(item.date.substring(4, 6)) - 1, parseInt(item.date.substring(6, 8)));
+                let time = new Date(parseInt(item.date.substring(0, 4)), parseInt(item.date.substring(4, 6)) - 1, parseInt(item.date.substring(6, 8)));
                 if (!isNaN(time)) noteEles.push({
                     tagName: "time",
                     props: {
@@ -180,8 +184,8 @@ var site = {};
             }
 
             if (item.categories && item.categories instanceof Array && item.categories.length > 0) {
-                for (var i in item.categories) {
-                    var category = item.categories[i];
+                for (let i in item.categories) {
+                    let category = item.categories[i];
                     if (category) noteEles.push({
                         tagName: "span",
                         children: category
@@ -190,30 +194,47 @@ var site = {};
             }
 
             setChildChildren("note", noteEles);
-            var cnt = getChildModel("content");
+            let cnt = getChildModel("content");
             if (cnt) {
                 cnt.data = { value: r2 };
                 delete cnt.styleRefs;
                 delete cnt.children;
             }
 
+            if (item.related && item.related.length > 0) {
+                relatedList.children = item.related.map(function (ele) {
+                    if (!ele || !ele.name || !ele.url) return null;
+                    return {
+                        tagName: "li",
+                        children: [{
+                            tagName: "a",
+                            props: { href: ele.url },
+                            children: ele.name
+                        }]
+                    }
+                }).filter(function (ele) {
+                    return ele != null;
+                });
+                if (relatedList.children.length > 0) delete relatedContainer.style;
+            }
+
             context.refresh();
         }, function (r) {
             clearArray(model);
-            genNotification("Load failed.");
+            genNotification(strings.loadFailed || "Load failed.");
             context.refresh();
         });
         window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     function genMenu() {
-        var col = [];
+        let col = [];
         if (!info.list) return col;
-        var year = null;
+        let year = null;
         info.list.forEach(function (item) {
             if (!item || item.invalid) return;
             if (typeof item.date === "string" && item.date.length > 3) {
-                var y = item.date.substring(0, 4);
+                let y = item.date.substring(0, 4);
                 if (y !== year) col.push({
                     tagName: "li",
                     styleRefs: "grouping-header",
@@ -244,10 +265,10 @@ var site = {};
 
     function render() {
         if (!rootContext) return;
-        var model = rootContext.model();
+        let model = rootContext.model();
         if (!model) return;
-        var id = site.firstQuery();
-        var lang = navigator.language || navigator.userLanguage || navigator.browserLanguage || navigator.systemLanguage;
+        let id = site.firstQuery();
+        let lang = navigator.language || navigator.userLanguage || navigator.browserLanguage || navigator.systemLanguage;
         $.get(lang.indexOf("zh") === 0 ? "zh-Hans.json" : "en.json").then(function (r) {
             if (!r || !r.list || !(r.list instanceof Array)) return;
             setChildChildren("blogTitle", r.name || "Blogs");
@@ -258,16 +279,17 @@ var site = {};
                     return;
                 }
 
-                var fileName = item.url.substring(6);
-                var fileDate = item.url.substring(1, 5).replace("/", "").replace("/", "");
-                var fileExtPos = fileName.indexOf(".");
-                var fileExt = fileExtPos >= 0 ? fileName.substring(fileExtPos + 1) : "";
+                let fileName = item.url.substring(6);
+                let fileDate = item.url.substring(1, 5).replace("/", "").replace("/", "");
+                let fileExtPos = fileName.indexOf(".");
+                let fileExt = fileExtPos >= 0 ? fileName.substring(fileExtPos + 1) : "";
                 fileName = fileExtPos > 0 ? fileName.substring(0, fileExtPos) : "";
                 if (!fileName) {
                     item.invalid = true;
                     return;
                 }
 
+                if (fileName.endsWith("/README")) fileName = fileName.substring(0, fileName.length - 7);
                 if (!item.id) item.id = fileName;
                 if (!item.date) item.date = fileDate;
                 if (!item.type) item.type = fileExt;
@@ -279,9 +301,18 @@ var site = {};
             setChildChildren("articles", genMenu());
             renderArticle(id);
         }, function (r) {
-            genNotification("Load failed.");
+            genNotification(strings.loadFailed || "Load failed.");
             rootContext.refresh();
         });
+    }
+
+    site.regStrings = function (map) {
+        let keys = Object.keys(map);
+        for (let i = 0; i < keys.length; i++) {
+            let key = keys[i];
+            if (key) strings[key] = map[key];
+            else delete strings[key];
+        }
     }
 
     site.headings = function (ele) {
@@ -295,11 +326,11 @@ var site = {};
             return null;
         try {
             if (typeof name === "string") {
-                var result = url.match(new RegExp("[\?\&]" + name + "=([^\&]+)", "i"));
+                let result = url.match(new RegExp("[\?\&]" + name + "=([^\&]+)", "i"));
                 if (result == null || result.length < 1) return "";
                 return notToDecode ? result[1] : decodeURIComponent(result[1]);
             } else if (typeof name === "number") {
-                var result = url.match(new RegExp("[\?\&][^\?\&]+=[^\?\&]+", "g"));
+                let result = url.match(new RegExp("[\?\&][^\?\&]+=[^\?\&]+", "g"));
                 if (result == null) return "";
                 return notToDecode ? result[name].substring(1) : decodeURIComponent(result[name].substring(1));
             }
@@ -309,10 +340,10 @@ var site = {};
     };
 
     site.firstQuery = function () {
-        var id = location.search;
+        let id = location.search;
         if (!!id && id.length > 1) {
             id = id.substring(1);
-            var idEndPos = id.indexOf("?");
+            let idEndPos = id.indexOf("?");
             if (idEndPos >= 0) id = id.substring(0, idEndPos);
             idEndPos = id.indexOf("&");
             if (idEndPos >= 0) id = id.substring(0, idEndPos);
@@ -322,7 +353,7 @@ var site = {};
     };
 
     site.head = function (ext, menu, needInsert) {
-        var cntEle = document.createElement("header");
+        let cntEle = document.createElement("header");
         cntEle.id = "page_head";
         cntEle.innerHTML = "<section><h1><a href=\"https://kingcean." + ext + "\"><strong>Kingcean</strong><span>." + ext + "</span></a></h1><ul>"
             + menu.map(ele => "<li><a href=\"" + ele.url + "\">" + ele.name + "</a></li>").join("")
@@ -332,14 +363,14 @@ var site = {};
     };
 
     site.blogs = function () {
-        var cntEle = document.getElementById("blog_content");
+        let cntEle = document.getElementById("blog_content");
         if (!cntEle) {
             cntEle = document.createElement("section");
             cntEle.id = "blog_content";
             document.body.appendChild(cntEle);
         }
 
-        var hasInit = rootContext != null;
+        let hasInit = rootContext != null;
         rootContext = Hje.render(cntEle, {
             children: [{
                 tagName: "article",
@@ -355,28 +386,46 @@ var site = {};
                     tagName: "main",
                     children: [{
                         tagName: "em",
-                        children: "Loading…"
+                        children: strings.loading || "Loading…"
                     }],
                     onInit(c) {
-                        var mdEle = c.element();
-                        var mdModel = c.model();
+                        let mdEle = c.element();
+                        let mdModel = c.model();
                         if (!mdEle || !mdModel || !mdModel.data || mdModel.data.done) return;
                         mdModel.data.done = true;
                         mdEle.innerHTML = marked.parse(mdModel.data.value);
-                        var contentMenu = getChildModel("cntMenu");
-                        if (!contentMenu) return;
-                        var headers = getHeadings(mdEle);
-                        if (!headers || headers.length < 1) {
-                            resetContentMenu();
-                            return;
+                        let eles = mdEle.getElementsByTagName("a");
+                        let list = info.list;
+                        for (let i = 0; i < eles.length; i++) {
+                            let ele = eles[i];
+                            if (!ele || !ele.href) continue;
+                            let eleUrl = ele.getAttribute("href");
+                            if (!eleUrl) continue;
+                            if (eleUrl.startsWith("./")) eleUrl = eleUrl.substring(1);
+                            if (eleUrl.endsWith("/README")) eleUrl = eleUrl.substring(0, eleUrl.length - 7);
+                            for (var j = 0; j < list.length; j++) {
+                                let article = list[j];
+                                if (!article || !article.id) continue;
+                                let articleUrl = article.dir + "/" + article.id;
+                                if (articleUrl !== eleUrl) continue;
+                                ele.href = "?" + article.id;
+                                ele.addEventListener("click", function (ev) {
+                                    if (ev.preventDefault) ev.preventDefault();
+                                    else ev.returnValue = false;
+                                    renderArticle(article.id);
+                                    history.pushState({ id: article.id }, "", "?" + article.id);
+                                });
+                                break;
+                            }
                         }
 
-                        if (headers.length == 1) {
-                            headers = headers[0] ? headers[0].items : undefined;
-                            if (!headers || headers.length < 2) {
-                                resetContentMenu();
-                                return;
-                            }
+                        let contentMenu = getChildModel("cntMenu");
+                        if (!contentMenu) return;
+                        let headers = getHeadings(mdEle);
+                        let levels = getHeadingLevels(headers);
+                        if (!headers || headers.length < 2 || levels.length < 1) {
+                            resetContentMenu();
+                            return;
                         }
 
                         delete contentMenu.style;
@@ -391,24 +440,38 @@ var site = {};
                                         window.scrollTo({ top: 0, behavior: "smooth" });
                                     }
                                 },
-                                children: "⇮ Top"
+                                children: "⇮ " + (strings.top || "Top")
                             }]
                         });
-                        for (var i = 0; i < headers.length; i++) {
-                            var menu = headers[i];
-                            if (!menu || !menu.text) continue;
-                            contentMenu.children.push(genHeadModel(menu));
-                            if (menu.items && menu.items.length > 0) {
-                                for (var j = 0; j < menu.items.length; j++) {
-                                    var subMenu = menu.items[j];
-                                    if (!subMenu || !subMenu.text) continue;
-                                    contentMenu.children.push(genHeadModel(subMenu, true));
-                                }
+                        if (levels.length == 1) levels.push(levels[0] + 1);
+                        for (let i = 0; i < headers.length; i++) {
+                            let item = headers[i];
+                            switch (item.level) {
+                                case levels[0]:
+                                    contentMenu.children.push(genHeadModel(item));
+                                    break;
+                                case levels[1]:
+                                    contentMenu.children.push(genHeadModel(item, true));
+                                    break;
                             }
                         }
 
                         refreshChild("cntMenu");
                     }
+                }, {
+                    key: "relatedContainer",
+                    styleRefs: "x-part-blog-related",
+                    tagName: "section",
+                    style: { display: "none" },
+                    children: [{
+                        tagName: "h2",
+                        children:　strings.seeAlso || "See also"
+                    }, {
+                        key: "relatedList",
+                        tagName: "ul",
+                        styleRefs: "link-tile-compact",
+                        children: []
+                    }]
                 }]
             }, {
                 tagName: "aside",
