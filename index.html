@@ -8,6 +8,9 @@
     <link href="css/layout.css" rel="stylesheet" />
     <link href="css/current.css" rel="stylesheet" />
     <style type="text/css">
+    body > header + section {
+        min-height: 640px; margin-bottom: 60px;
+    }
     #project-trivial {
         background-image: url(images/bg/card-trivial.jpg);
         height: 200px; border-radius: 4px; user-select: none;
@@ -82,7 +85,7 @@
             </ul>
         </section>
     </header>
-    <section style="min-height: 640px; margin-bottom: 60px; ">
+    <section>
         <h2>Projects</h2>
         <section id="project-trivial" >
             <img alt="Trivial" src="images/logos/trivial.png" />
