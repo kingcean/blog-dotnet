@@ -5,6 +5,7 @@ let site = {};
     let rootContext;
     let info = {};
     let strings = {};
+    let settings = {};
 
     function clearArray(arr) {
         while (arr.length > 0) arr.pop();
@@ -108,6 +109,38 @@ let site = {};
         return m
     }
 
+    function getSubFile(item, sub) {
+        if (!item || !sub || !item.subs) return {};
+        if (sub.endsWith(".md")) {
+            sub = sub.substring(0, sub.length - 3);
+            if (sub.endsWith("/README")) sub = sub.substring(0, sub.length - 7);
+        }
+        else if (sub.endsWith("/")) {
+            sub = sub.substring(0, sub.length - 1);
+        }
+
+        let id = sub;
+        if (item.subs === true) return { id: sub, file: sub + ".md" };
+        if (!(item.subs instanceof Array)) return {};
+        let sub1 = sub + ".md";
+        let sub2 = sub + "/README.md";
+        for (var i = 0; i < item.subs.length; i++) {
+            let subItem = item.subs[i];
+            if (!subItem) continue;
+            if (subItem.startsWith("/")) subItem = subItem.substring(1);
+            let name;
+            if (typeof subItem !== 'string') {
+                subItem = subItem.url;
+                name = subItem.name;
+            }
+
+            if (subItem != sub1 && subItem != sub2) continue;
+            return { id: id, file: subItem, name: name };
+        }
+
+        return {};
+    }
+
     function renderArticle(id) {
         let context = rootContext;
         if (!context) return;
@@ -115,10 +148,16 @@ let site = {};
         setChildChildren("note", undefined);
         let relatedContainer = getChildModel("relatedContainer");
         relatedContainer.style = { display: "none" };
-        let relatedList = getChildModel("relatedList");
-        relatedList.children = [];
+        relatedContainer.children = [];
         let item;
+        var sub;
         if (id) {
+            var subOffset = id.lastIndexOf("/");
+            if (subOffset > 0) {
+                sub = id.substring(subOffset + 1);
+                id = id.substring(0, subOffset);
+            }
+
             let list = info.list;
             for (let i in list) {
                 let ele = list[i];
@@ -126,19 +165,29 @@ let site = {};
                 item = ele;
                 break;
             }
+
+            sub = getSubFile(item, sub).file;
         }
 
         if (!item || item.invalid) {
-            setChildChildren("title", info.name);
+            setChildChildren("title", settings.disableTitle ? undefined : info.name);
             let cnt = getChildModel("content");
             if (cnt) {
                 delete cnt.data;
                 cnt.styleRefs = "x-part-blog-menu";
-                cnt.children = [{
+                cnt.children = [];
+                if (settings.banner instanceof Array) {
+                    for (var i = 0; i < settings.banner.length; i++) {
+                        let banner = settings.banner[i];
+                        if (banner) cnt.children.push(banner);
+                    }
+                }
+
+                cnt.children.push({
                     tagName: "ul",
                     styleRefs: "link-tile-compact",
                     children: genMenu()
-                }];
+                });
             }
 
             context.refresh();
@@ -148,23 +197,50 @@ let site = {};
         setChildChildren("title", item.name);
         genNotification(strings.loading || "Loading…");
         context.refresh();
-        let relaPath = "/blog";
+        let relaPath = "/" + (settings.rootPath || "blog");
         try {
-            if (location.pathname.endsWith("/blog/")) relaPath = ".";
+            let testRootPath = relaPath + "/";
+            if (location.pathname.endsWith(testRootPath)) relaPath = ".";
         } catch (ex) {}
-        $.get(relaPath + item.url).then(function (r2) {
-            r2 = r2.replace(/\(.\//g, "(" + relaPath + item.dir + "/");
+        var url = relaPath + item.url;
+        if (sub) url = relaPath + "/" + item.dir + "/" + item.file + "/" + sub;
+        $.get(url).then(function (r2) {
+            if (sub) {
+                if (sub.indexOf("/") > 0)
+                    r2 = r2.replace(/\(..\/..\//g, "(" + relaPath + item.dir + "/").replace(/\(..\//g, "(" + relaPath + item.dir + "/" + item.file + "/");
+                else
+                    r2 = r2.replace(/\(..\//g, "(" + relaPath + item.dir + "/").replace(/\(.\//g, "(" + relaPath + item.dir + "/" + item.file + "/");
+            } else {
+                r2 = r2.replace(/\(.\//g, "(" + relaPath + item.dir + "/");
+            }
+
             let header1 = "# " + item.name + "\n";
             if (r2.startsWith(header1)) r2 = r2.substring(header1.length);
             header1 = "# " + item.name + "\r\n";
             if (r2.startsWith(header1)) r2 = r2.substring(header1.length);
             if (item.end) {
-                let endTag = "\n<!-- " + item.end + " -->";
+                let endTag = "\n<!-- " + (item.end === true ? "End" : item.end) + " -->";
                 let endIndex = r2.lastIndexOf(endTag);
                 if (endIndex > 1) r2 = r2.substring(0, endIndex);
             }
 
             let noteEles = [];
+            if (item.author) {
+                if (typeof item.author === "string") item.author = { name: item.author };
+                if (item.author.name && !item.author.hide) {
+                    noteEles.push(item.author.url ? {
+                        tagName: "a",
+                        props: {
+                            href: item.author.url
+                        },
+                        children: item.author.name
+                    } : {
+                        tagName: "span",
+                        children: item.author.name
+                    });
+                }
+            }
+
             if (typeof item.date === "string" && item.date.length > 7 && item.date.indexOf("-") < 0) {
                 let time = new Date(parseInt(item.date.substring(0, 4)), parseInt(item.date.substring(4, 6)) - 1, parseInt(item.date.substring(6, 8)));
                 if (!isNaN(time)) noteEles.push({
@@ -181,6 +257,8 @@ let site = {};
                     },
                     children: "'" + item.date.substring(0, 4)
                 })
+
+                if (typeof item.location === "string") noteEles[noteEles.length - 1].children += "  " + item.location;
             }
 
             if (item.categories && item.categories instanceof Array && item.categories.length > 0) {
@@ -196,13 +274,30 @@ let site = {};
             setChildChildren("note", noteEles);
             let cnt = getChildModel("content");
             if (cnt) {
-                cnt.data = { value: r2 };
+                cnt.data = { value: r2, sub: sub, id: id };
                 delete cnt.styleRefs;
                 delete cnt.children;
             }
 
+            if (item.notes) {
+                if (typeof item.notes === "string") item.notes = [item.notes];
+                if (item.notes instanceof Array) {
+                    for (let i = 0; i < item.notes.length; i++) {
+                        let noteLine = item.notes[i];
+                        if (!noteLine) continue;
+                        relatedContainer.children.push({
+                            tagName: "p",
+                            children:　[{
+                                tagName: "span",
+                                children: noteLine
+                            }]
+                        });
+                    }
+                }
+            }
+
             if (item.related && item.related.length > 0) {
-                relatedList.children = item.related.map(function (ele) {
+                let relatedList = item.related.map(function (ele) {
                     if (!ele || !ele.name || !ele.url) return null;
                     return {
                         tagName: "li",
@@ -215,9 +310,20 @@ let site = {};
                 }).filter(function (ele) {
                     return ele != null;
                 });
-                if (relatedList.children.length > 0) delete relatedContainer.style;
+                if (relatedList.length > 0) {
+                    relatedContainer.children.push({
+                        tagName: "h2",
+                        children:　strings.seeAlso || "See also"
+                    });
+                    relatedContainer.children.push({
+                        tagName: "ul",
+                        styleRefs: "link-tile-compact",
+                        children: relatedList
+                    });
+                }
             }
 
+            if (relatedContainer.children.length > 0) delete relatedContainer.style;
             context.refresh();
         }, function (r) {
             clearArray(model);
@@ -269,12 +375,12 @@ let site = {};
         if (!model) return;
         let id = site.firstQuery();
         let lang = navigator.language || navigator.userLanguage || navigator.browserLanguage || navigator.systemLanguage;
-        $.get(lang.indexOf("zh") === 0 ? "zh-Hans.json" : "en.json").then(function (r) {
+        $.get(settings.menuPath || (lang.indexOf("zh") === 0 ? "zh-Hans.json" : "en.json")).then(function (r) {
             if (!r || !r.list || !(r.list instanceof Array)) return;
             setChildChildren("blogTitle", r.name || "Blogs");
             r.list.reverse().forEach(function (item) {
                 if (!item) return;
-                if (!item.url || item.url.length < 17) {
+                if (!item.url || item.url.length < 12) {
                     item.invalid = true;
                     return;
                 }
@@ -290,6 +396,7 @@ let site = {};
                 }
 
                 if (fileName.endsWith("/README")) fileName = fileName.substring(0, fileName.length - 7);
+                item.file = fileName;
                 if (!item.id) item.id = fileName;
                 if (!item.date) item.date = fileDate;
                 if (!item.type) item.type = fileExt;
@@ -362,12 +469,19 @@ let site = {};
         else document.body.appendChild(cntEle);
     };
 
-    site.blogs = function () {
+    site.blogs = function (options) {
         let cntEle = document.getElementById("blog_content");
         if (!cntEle) {
             cntEle = document.createElement("section");
             cntEle.id = "blog_content";
             document.body.appendChild(cntEle);
+        }
+
+        if (options) {
+            settings.banner = options.banner;
+            settings.rootPath = options.rootPath;
+            settings.disableTitle = options.disableTitle;
+            settings.menuPath = options.menuPath;
         }
 
         let hasInit = rootContext != null;
@@ -402,18 +516,32 @@ let site = {};
                             let eleUrl = ele.getAttribute("href");
                             if (!eleUrl) continue;
                             if (eleUrl.startsWith("./")) eleUrl = eleUrl.substring(1);
-                            if (eleUrl.endsWith("/README")) eleUrl = eleUrl.substring(0, eleUrl.length - 7);
+                            else continue;
+                            if (eleUrl.endsWith("/README.md")) eleUrl = eleUrl.substring(0, eleUrl.length - 10);
+                            else if (eleUrl.endsWith("/")) eleUrl = eleUrl.substring(0, eleUrl.length - 1);
+                            var eleUrlArr = eleUrl.split("/");
+                            if (eleUrlArr.length < 3 || eleUrlArr.length > 4) continue;
+                            var enableSub = eleUrlArr.length == 4 && eleUrlArr[3];
                             for (var j = 0; j < list.length; j++) {
                                 let article = list[j];
                                 if (!article || !article.id) continue;
-                                let articleUrl = article.dir + "/" + article.id;
-                                if (articleUrl !== eleUrl) continue;
-                                ele.href = "?" + article.id;
+                                let subPath = article.id;
+                                if (enableSub) {
+                                    if (article.id !== eleUrlArr[2] || !article.subs || article.dir !== ("/" + eleUrlArr[1])) continue;
+                                    let subFile = getSubFile(article, eleUrlArr[3]).id;
+                                    if (!subFile) continue;
+                                    subPath += "/" + subFile;
+                                } else {
+                                    let articleUrl = article.dir + "/" + article.id;
+                                    if (article.url !== eleUrl && articleUrl !== eleUrl) continue;
+                                }
+
+                                ele.href = "?" + subPath;
                                 ele.addEventListener("click", function (ev) {
                                     if (ev.preventDefault) ev.preventDefault();
                                     else ev.returnValue = false;
-                                    renderArticle(article.id);
-                                    history.pushState({ id: article.id }, "", "?" + article.id);
+                                    renderArticle(subPath);
+                                    history.pushState({ id: subPath }, "", "?" + subPath);
                                 });
                                 break;
                             }
@@ -463,15 +591,7 @@ let site = {};
                     styleRefs: "x-part-blog-related",
                     tagName: "section",
                     style: { display: "none" },
-                    children: [{
-                        tagName: "h2",
-                        children:　strings.seeAlso || "See also"
-                    }, {
-                        key: "relatedList",
-                        tagName: "ul",
-                        styleRefs: "link-tile-compact",
-                        children: []
-                    }]
+                    children: []
                 }]
             }, {
                 tagName: "aside",

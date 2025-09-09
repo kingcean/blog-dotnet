@@ -46,7 +46,10 @@
     cursor: default;
     user-select: none;
 }
-#blog_content > article > h1 + section.x-part-blog-note > span::before {
+#blog_content > article > h1 + section.x-part-blog-note > a + time::before,
+#blog_content > article > h1 + section.x-part-blog-note > span + time::before,
+#blog_content > article > h1 + section.x-part-blog-note > time + span::before,
+#blog_content > article > h1 + section.x-part-blog-note > span + span::before {
     content: "  ·  ";
 }
 #blog_content > article > section.x-part-blog-related {
