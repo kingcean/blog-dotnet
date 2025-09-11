@@ -21,7 +21,7 @@
                     <a id="topmenu-blogs" href="https://kingcean.net/blog">Blogs</a>
                 </li>
                 <li>
-                    <a href="https://trivial.kingcean.net">Trivial libraries</a>
+                    <a id="topmenu-trivial" href="https://trivial.kingcean.net">Trivial libraries</a>
                 </li>
                 <li>
                     <a href="https://nuscien.github.io">NuScien</a>
@@ -32,11 +32,12 @@
     <script type="text/javascript">
         site.blogs();
         site.getString("blogs", "topmenu-blogs");
+        document.getElementById("topmenu-trivial").innerHTML = "Trivial " + site.getString("libs");
     </script>
     <footer>
         <section>
             <div class="x-copyright">
-                <img src="../images/logos/barcode.svg" />
+                <img alt="Kingcean.net" src="../images/logos/barcode.svg" />
                 <span>&copy; Kingcean Tuan 2021 &nbsp; | &nbsp; .NET</span>
             </div>
         </section>

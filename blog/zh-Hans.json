@@ -43,5 +43,12 @@
             "categories": ["windows-app", "asr", "tts"],
             "date": "20160818"
         }
-    ]
+    ],
+    "redir": {
+        "delay-task": "yanchi-renwu",
+        "multiple-hit-task": "baoji-shijian",
+        "windows-remote-arduino": "windows-yaokong-arduino",
+        "string-format": "zifuchuan-geshi",
+        "speech-in-uwp": "uwp-yuyin"
+    }
 }

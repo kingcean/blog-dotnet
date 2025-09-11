@@ -74,6 +74,7 @@
         site.getString("otherLinks", "title-links");
         site.getString("blogs", "button-blogs");
         site.getString("more", "button-more");
+        document.getElementById("topmenu-trivial").innerHTML = "Trivial " + site.getString("libs");
         document.getElementById("button-details").innerText = site.getString("getDetails") + " >";
     }
     </script>
@@ -87,7 +88,7 @@
                     <a id="topmenu-blogs" href="https://kingcean.net/blog">Blogs</a>
                 </li>
                 <li>
-                    <a href="https://trivial.kingcean.net">Trivial libraries</a>
+                    <a id="topmenu-trivial" href="https://trivial.kingcean.net">Trivial libraries</a>
                 </li>
                 <li>
                     <a href="https://nuscien.github.io">NuScien</a>
