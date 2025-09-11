@@ -74,7 +74,9 @@
         site.getString("otherLinks", "title-links");
         site.getString("blogs", "button-blogs");
         site.getString("more", "button-more");
-        document.getElementById("topmenu-trivial").innerHTML = "Trivial " + site.getString("libs");
+        let trivialLibs = "Trivial " + site.getString("libs");
+        document.getElementById("topmenu-trivial").innerHTML = trivialLibs;
+        document.getElementById("title-trivial").innerHTML = trivialLibs;
         document.getElementById("button-details").innerText = site.getString("getDetails") + " >";
     }
     </script>
@@ -100,7 +102,7 @@
         <h2 id="title-projects">Projects</h2>
         <section id="project-trivial" >
             <img alt="Trivial" src="images/logos/trivial.png" />
-            <a href="https://trivial.kingcean.net" >Trivial libraries</a>
+            <a id="title-trivial" href="https://trivial.kingcean.net" >Trivial libraries</a>
             <span>A set of powerful development kit: JSON, tasks, OAuth, numerals, chemistry, barcode, etc.<br />Contain a lot of utilities, models and components, which are trivial but useful, to help you to focus on the business logic of your projects.</span>
             <a id="button-details" href="https://trivial.kingcean.net" >Get details &gt;</a>
         </section>
