@@ -6,7 +6,7 @@
     <meta property="og:image" content="images/bg/poster.jpg">
     <title>DotNet Dev - Kingcean.net</title>
     <link href="https://cdn.jsdelivr.net/npm/hje@2.0.0/docs/css/site.net.css" rel="stylesheet" />
-    <link href="css/current.css" rel="stylesheet" />
+    <link href="./css/current.css" rel="stylesheet" />
     <style type="text/css">
     body > header + section {
         min-height: 640px; margin-bottom: 60px;
@@ -17,9 +17,13 @@
     function showMoreProjects() {
         site.showElements(["project-item-azure", "project-item-iqiyi"], ["project-more"]);
     }
+    function setText(e, v) {
+        let ele = document.getElementById(e);
+        if (ele) ele.innerText = v;
+    }
     function onInit() {
         site.getString("blogs", "topmenu-blogs");
-        site.getString("projects", "title-projects");
+        let projectStr = site.getString("projects", "title-projects");
         site.getString("community", "title-community");
         site.getString("otherLinks", "title-links");
         site.getString("blogs", "button-blogs");
@@ -28,6 +32,10 @@
         document.getElementById("topmenu-trivial").innerHTML = trivialLibs;
         document.getElementById("title-trivial").innerHTML = trivialLibs;
         document.getElementById("button-details").innerText = site.getString("getDetails") + " >";
+        let ww = projectStr !== "项目";
+        if (ww) return;
+        setText("text-trivial-1", "涉及多项常见编程领域：JSON、任务、OAuth、数学、化学、条形码等。");
+        setText("text-trivial-2", "包含工具、模型和组件，虽小但实用，以祝你在项目开发过程中更关注于业务，而不用在意细节。");
     }
     </script>
 </head>
@@ -53,7 +61,10 @@
         <section id="project-trivial" >
             <img alt="Trivial" src="images/logos/trivial.png" />
             <a id="title-trivial" href="https://trivial.kingcean.net" >Trivial libraries</a>
-            <span>A set of powerful development kit: JSON, tasks, OAuth, numerals, chemistry, barcode, etc.<br />Contain a lot of utilities, models and components, which are trivial but useful, to help you to focus on the business logic of your projects.</span>
+            <span>
+                <span id="text-trivial-1">A set of powerful development kit: JSON, tasks, OAuth, numerals, chemistry, barcode, etc.</span><br />
+                <span id="text-trivial-2">Contain a lot of utilities, models and components, which are trivial but useful, to help you to focus on the business logic of your projects.</span>
+            </span>
             <a id="button-details" href="https://trivial.kingcean.net" >Get details &gt;</a>
         </section>
         <section class="link-tile-wide">
@@ -79,8 +90,8 @@
         <h2 id="title-links">Other links</h2>
         <section class="link-tile-wide">
             <a href="https://kingcean.org"><span>Kingcean.org</span>
-            </a><a href="https://dot.net"><img alt="Microsoft.NET" src="images/logos/dotnet.png" /><span>Microsoft.NET</span>
-            </a><a href="https://jinchen.org"><img alt="Jinchen Art" src="images/logos/jinchen.png" /><span>Jinchen Art</span>
+            </a><a href="https://dot.net"><img alt="Microsoft.NET" src="./images/logos/dotnet.png" /><span>Microsoft.NET</span>
+            </a><a href="https://jinchen.org"><img alt="Jinchen Art" src="./images/logos/jinchen.png" /><span>Jinchen Art</span>
             </a>
         </section>
     </section>
