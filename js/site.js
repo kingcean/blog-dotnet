@@ -839,7 +839,18 @@ let site = {};
         }
 
         return s;
-    }
+    };
+
+    site.showElements = function (show, hide) {
+        if (show) show.forEach(function (ele) {
+            let element = document.getElementById(ele);
+            if (element) element.style.display = "";
+        });
+        if (hide) hide.forEach(function (ele) {
+            let element = document.getElementById(ele);
+            if (element) element.style.display = "none";
+        });
+    };
 
     site.head = function (ext, menu, needInsert) {
         let cntEle = document.createElement("header");

@@ -5,67 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:image" content="images/bg/poster.jpg">
     <title>DotNet Dev - Kingcean.net</title>
-    <link href="css/layout.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/hje@2.0.0/docs/css/site.net.css" rel="stylesheet" />
     <link href="css/current.css" rel="stylesheet" />
     <style type="text/css">
     body > header + section {
         min-height: 640px; margin-bottom: 60px;
     }
-    #project-trivial {
-        background-image: url(images/bg/card-trivial.jpg);
-        height: 200px; border-radius: 4px; user-select: none;
-    }
-    #project-trivial > img {
-        width: 80px; height: 80px;; position: absolute; top: 30px; left: 30px; transition: 0.4s; user-select: none;
-    }
-    #project-trivial > img + a {
-        font-size: 32px; font-weight: lighter; line-height: 50px; height: 50px; overflow: hidden; text-overflow: ellipsis; position: absolute; top: 20px; left: 150px; text-decoration-color: #444; text-decoration-thickness: 8px; text-decoration-style: dotted;
-    }
-    #project-trivial > span, #project-trivial > span + a {
-        line-height: 20px; max-width: 800px; max-height: 100px; overflow: hidden; text-overflow: ellipsis; position: absolute; left: 150px; transition: 0.4s;
-    }
-    #project-trivial > span {
-        color: #CCC; top: 80px;
-    }
-    #project-trivial > span + a, #project-trivial > span + a:visited {
-        color: #CCC; text-decoration-style: dashed; top: 160px;
-    }
-    #project-trivial > span + a:hover {
-        color: #9EF;
-    }
-    #project-trivial > span + a:active {
-        color: #8CE;
-    }
-    @media screen and (max-width:800px) {
-        #project-trivial > img {
-            width: 48px; height: 48px; position: absolute; top: 20px; left: 20px;
-        }
-        #project-trivial > img + a {
-            font-size: 24px; line-height: 40px; height: 60px; overflow: hidden; text-overflow: ellipsis; position: absolute; top: 10px; right: 10px; left: 80px;
-        }
-        #project-trivial > span, #project-trivial > span + a {
-            line-height: 20px; max-width: 800px; max-height: 140px; overflow: hidden; text-overflow: ellipsis; position: absolute; right: 10px; left: 80px;
-        }
-        #project-trivial > span {
-            top: 50px;
-        }
-    }
-    @media screen and (max-width:600px) {
-        body {
-            background-image: none;
-        }
-        #project-trivial > span + a {
-            display: none;
-        }
-    }
     </style>
-    <script type="text/javascript" src="./js/site.js" ></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/hje@2.0.0/docs/js/site.js" ></script>
     <script type="text/javascript">
     function showMoreProjects() {
-        ["project-item-azure", "project-item-iqiyi"].forEach(function (ele, i) {
-            document.getElementById(ele).style.display = "";
-        });
-        document.getElementById("project-more").style.display = "none";
+        site.showElements(["project-item-azure", "project-item-iqiyi"], ["project-more"]);
     }
     function onInit() {
         site.getString("blogs", "topmenu-blogs");
