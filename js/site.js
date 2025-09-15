@@ -883,6 +883,189 @@ let site = {};
         else document.body.appendChild(cntEle);
     };
 
+    site.cdnModel = function (name, ver, url, path) {
+        if (!name || !url) return undefined;
+        let s = name;
+        if (ver) s += "@" + ver;
+        if (!path) path = "";
+        else if (!path.startsWith("/")) path = "/" + path
+        url += s + path;
+        return {
+            tagName: "div",
+            styleRefs: "x-part-code",
+            children: [{
+                tagName: "code",
+                children: [{
+                    tagName: "span",
+                    styleRefs: "x-code-pack",
+                    children: "<"
+                }, {
+                    tagName: "span",
+                    styleRefs: "x-code-tag",
+                    children: "script"
+                }, {
+                    tagName: "span",
+                    children: " "
+                }, {
+                    tagName: "span",
+                    styleRefs: "x-code-attr",
+                    children: "type"
+                }, {
+                    tagName: "span",
+                    children: "="
+                }, {
+                    tagName: "span",
+                    styleRefs: "x-code-quote",
+                    children: "\""
+                }, {
+                    tagName: "span",
+                    styleRefs: "x-code-string",
+                    children: "text/javascript"
+                }, {
+                    tagName: "span",
+                    styleRefs: "x-code-quote",
+                    children: "\""
+                }, {
+                    tagName: "span",
+                    children: " "
+                }, {
+                    tagName: "span",
+                    styleRefs: "x-code-attr",
+                    children: "src"
+                }, {
+                    tagName: "span",
+                    children: "="
+                }, {
+                    tagName: "span",
+                    styleRefs: "x-code-quote",
+                    children: "\""
+                }, {
+                    tagName: "span",
+                    styleRefs: "x-code-string",
+                    children: url
+                }, {
+                    tagName: "span",
+                    styleRefs: "x-code-quote",
+                    children: "\""
+                }, {
+                    tagName: "span",
+                    styleRefs: "x-code-pack",
+                    children: " ></"
+                }, {
+                    tagName: "span",
+                    styleRefs: "x-code-tag",
+                    children: "script"
+                }, {
+                    tagName: "span",
+                    styleRefs: "x-code-pack",
+                    children: ">"
+                }]
+            }]
+        }
+    };
+
+    site.setElementProp = function (ele, key, value) {
+        let element = document.getElementById(ele);
+        if (!element) return;
+        if (key == null) key = element.innerText = value;
+        else if (key === "display" && typeof value === "boolean") key = element.style.display = value ? "" : "none";
+        else element[key] = value;
+    }
+
+    site.toSpan = function(line, arr) {
+        if (line === false || line == null) {
+            return undefined;
+        } else if (line === true) {
+            let m = {
+                tagName: "span",
+            };
+            return arr ? [m] : m;
+        }
+
+        if (typeof line === "number") line = line.toString(10);
+        if (typeof line === "string") {
+            let m = {
+                tagName: "span",
+                children: line
+            };
+            return arr ? [m] : m;
+        }
+
+        if (line instanceof Array) {
+            let list = [];
+            for (let i = 0; i < line.length; i++) {
+                let item = line[i];
+                let m = site.toSpan(item);
+                if (m) list.push(m);
+            }
+
+            return arr ? list : {
+                tagName: "span",
+                children: list
+            };
+        }
+
+        return arr ? [line] : line;
+    };
+
+    site.buttonList = function(config) {
+        if (!config) return undefined;
+        let m = {};
+        if (config.styleRefs) m.styleRefs = config.styleRefs;
+        if (config.data) m.data = config.data;
+        if (config.props) m.props = config.props;
+        if (config.data) m.data = config.data;
+        if (config.item === true) {
+            if (!config.text) return undefined;
+            m.tagName = "a";
+            m.children = site.toSpan(config.text, true);
+            if (typeof config.click === "function") m.on = {
+                click(ev) {
+                    config.click(ev);
+                }
+            };
+            return m;
+        }
+
+        let itemConfig = config.item || {};
+        m.children = [];
+        if (config.list instanceof Array) {
+            for (let i = 0; i < config.list.length; i++) {
+                let item = config.list[i];
+                if (!item) continue;
+                if (typeof item === "number") item = item.toString(10);
+                if (typeof item === "string") {
+                    m.children.push({
+                        tagName: "span",
+                        styleRefs: config.groupStyleRefs,
+                        children: item
+                    });
+                    continue;
+                }
+
+                if (item === true) {
+                    m.children.push({
+                        tagName: "br"
+                    });
+                    continue;
+                }
+
+                let itemProps = {};
+                if (item.url) itemProps.href = item.url;
+                if (item.title) itemProps.title = item.title;
+                m.children.push(site.buttonList({
+                    text: item.text,
+                    styleRefs: item.styleRefs || itemConfig.styleRefs,
+                    props: itemProps,
+                    click: item.click || itemConfig.click,
+                    item: true
+                }));
+            }
+        }
+
+        return m;
+    };
+
     site.blogMenu = function(url) {
         if (!url) url = {};
         else if (typeof url === "string") url = { url: url };
