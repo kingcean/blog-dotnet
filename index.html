@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:image" content="images/bg/poster.jpg">
     <title>DotNet Dev - Kingcean.net</title>
-    <link href="https://cdn.jsdelivr.net/npm/hje@2.0.0/docs/css/site.net.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/hje@2.1.0/docs/css/site.net.css" rel="stylesheet" />
     <link href="./css/current.css" rel="stylesheet" />
     <style type="text/css">
     body > header + section {
         min-height: 640px; margin-bottom: 60px;
     }
     </style>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/hje@2.0.0/docs/js/site.js" ></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/hje@2.1.0/docs/js/site.js" ></script>
     <script type="text/javascript">
     function showMoreProjects() {
         site.showElements(["project-item-azure", "project-item-iqiyi"], ["project-more"]);
@@ -28,10 +28,10 @@
         site.getString("otherLinks", "title-links");
         site.getString("blogs", "button-blogs");
         site.getString("more", "button-more");
+        site.getString("getDetails", "button-details");
         let trivialLibs = "Trivial " + site.getString("libs");
         document.getElementById("topmenu-trivial").innerHTML = trivialLibs;
         document.getElementById("title-trivial").innerHTML = trivialLibs;
-        document.getElementById("button-details").innerText = site.getString("getDetails") + " >";
         let ww = projectStr !== "项目";
         if (ww) return;
         setText("text-trivial-1", "涉及多项常见编程领域：JSON、任务、OAuth、数学、化学、条形码等。");
@@ -65,7 +65,7 @@
                 <span id="text-trivial-1">A set of powerful development kit: JSON, tasks, OAuth, numerals, chemistry, barcode, etc.</span><br />
                 <span id="text-trivial-2">Contain a lot of utilities, models and components, which are trivial but useful, to help you to focus on the business logic of your projects.</span>
             </span>
-            <a id="button-details" href="https://trivial.kingcean.net" >Get details &gt;</a>
+            <a class="x-link-more" href="https://trivial.kingcean.net" ><span id="button-details">Get details</span></a>
         </section>
         <section class="link-tile-wide">
             <a href="https://github.com/nuscien/nuscien"><img alt="NuScien" src="images/logos/nuscien.png" /><span>NuScien</span>

@@ -1008,9 +1008,10 @@ let site = {};
         }
     };
 
-    site.setElementProp = function (ele, key, value) {
-        let element = document.getElementById(ele);
-        if (!element) return;
+    site.setElementProp = function (element, key, value) {
+        if (!element) return undefined;
+        if (typeof element === "string") element = document.getElementById(element);
+        if (!element || !element.tagName) return;
         if (key == null) key = element.innerText = value;
         else if (key === "display" && typeof value === "boolean") key = element.style.display = value ? "" : "none";
         else element[key] = value;
@@ -1268,7 +1269,10 @@ let site = {};
                         key: "previousButton",
                         tagName: "a",
                         props: { disabled: true, href: "javascript:void(0)", title: site.getString("previous") },
-                        children: "<",
+                        children: [
+                            { tagName: "span", children: "<" },
+                            { tagName: "span", children: site.getString("previous") }
+                        ],
                         on: {
                             click(ev) {
                                 let m = getChildModel("previousButton");
@@ -1280,7 +1284,10 @@ let site = {};
                         key: "nextButton",
                         tagName: "a",
                         props: { disabled: true, href: "javascript:void(0)", title: site.getString("next") },
-                        children: (site.getString("next")) + "　>",
+                        children: [
+                            { tagName: "span", children: site.getString("next") },
+                            { tagName: "span", children: ">" }
+                        ],
                         on: {
                             click(ev) {
                                 let m = getChildModel("nextButton");
