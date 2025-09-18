@@ -817,9 +817,21 @@ let site = {};
                 element.innerHTML = marked.parse(md);
             else
                 element.innerText = md;
+            if (typeof hljs === "object" && typeof hljs.highlightElement === "function") {
+                let codes = site.codeElements(element);
+                if (codes) {
+                    for (let i = 0; i < codes.length; i++) {
+                        hljs.highlightElement(codes[i]);
+                    }
+                }
+            }
         } catch (ex) {
             element.innerText = site.getString("renderFailed");
         }
+    }
+
+    function getCodeElement(element) {
+        return element.children.length > 0 ? element.children[0] : undefined;
     }
 
     site.regStrings = function (map) {
@@ -895,6 +907,24 @@ let site = {};
             if (element) element.style.display = "none";
         });
     };
+
+    site.codeElements = function (element) {
+        if (!element) return undefined;
+        if (typeof element === "string") {
+            element = document.getElementById(element);
+            if (!element) return undefined;
+        }
+
+        let blocks = element.getElementsByTagName("pre");
+        let arr = [];
+        if (!blocks) return;
+        for (let i = 0; i < blocks.length; i++) {
+            let block = getCodeElement(blocks[i]);
+            if (block) arr.push(block);
+        }
+
+        return arr;
+    }
 
     site.head = function (ext, menu, needInsert) {
         let cntEle = document.createElement("header");
