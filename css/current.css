@@ -29,6 +29,12 @@
 #blog_content > article > main > p > code,
 #blog_content > article > main > ul > li > code,
 #blog_content > article > main > ol > li > code,
+#blog_content > article > main > ul > li > p > code,
+#blog_content > article > main > ol > li > p > code,
+#blog_content > article > main > ul > li > ul > li > code,
+#blog_content > article > main > ul > li > ol > li > code,
+#blog_content > article > main > ol > li > ul > li > code,
+#blog_content > article > main > ol > li > ol > li > code,
 #blog_content > article > main > table td > code,
 #blog_content > article > main > table th > code {
     background-color: #333;
