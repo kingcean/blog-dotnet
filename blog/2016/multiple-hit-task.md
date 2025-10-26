@@ -148,3 +148,12 @@ public class MultipleHitTask
 ```
 
 You can create an instance of this class and register the event handler. Then execute process member method anywhere.
+
+<!-- End -->
+---
+
+Originally published on MSDN blogs, _Multiple Hit Task_.
+
+> https://blogs.msdn.com/b/kingcean/archive/2016/03/21/multiple-hit-task.aspx
+
+(cc) Kingcean Tuan, 2016.

@@ -110,3 +110,12 @@ public class DelayTask
 ```
 
 这个类的使用也非常方便，只需初始化该对象，然后设置好最长间隔时长，并将原先的业务逻辑绑定到其事件上，然后在原本应当调用业务逻辑的地方，调用其 `Process` 方法即可。
+
+<!-- End -->
+---
+
+原文发布于 MSDN 博客《Delay Task》
+
+> https://blogs.msdn.com/b/kingcean/archive/2016/03/20/delay-task.aspx
+
+(cc) Kingcean Tuan, 2016.

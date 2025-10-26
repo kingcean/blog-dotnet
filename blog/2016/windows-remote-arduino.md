@@ -150,55 +150,97 @@ usb.begin(57600); // Need pass baud and serial configuration settings.
 
 The RemoteDevice class has following member methods.
 
-- `// Reads mode or state of a specific digital pin.`
+- Reads mode or state of a specific digital pin
 
-  `public PinMode getPinMode(byte pin_)`
+  ```csharp
+  public PinMode getPinMode(byte pin_);
+  public PinState digitalRead(byte pin_);
+  ```
 
-  `public PinState digitalRead(byte pin_)`
+- Writes mode or state of a specific digital pin
 
-- `// Writes mode or state of a specific digital pin.`
+  ```csharp
+  public void pinMode(byte pin_, PinMode mode_);
+  public void digitalWrite(byte pin_, PinState state_);
+  ```
 
-  `public void pinMode(byte pin_, PinMode mode_)`
+- Gets mode or state of a specific analog pin
 
-  `public void digitalWrite(byte pin_, PinState state_)`
+  ```csharp
+  public PinMode getPinMode(string analog_pin_);
+  public ushort analogRead(string analog_pin_);
+  ```
 
-- `// Gets mode or state of a specific analog pin.`
+- Writes mode or state of a specific analog pin
 
-  `public PinMode getPinMode(string analog_pin_)`
+  ```csharp
+  public void pinMode(string analog_pin_, PinMode mode_);
+  public void analogWrite(byte pin_, ushort value_);
+  ```
 
-  `public ushort analogRead(string analog_pin_)`
+- Disposes the instance
 
-- `// Writes mode or state of a specific analog pin.`
-
-  `public void pinMode(string analog_pin_, PinMode mode_)`
-
-  `public void analogWrite(byte pin_, ushort value_)`
-
-- `// Disposes the instance.`
-
-  `public void Dispose()`
+  ```csharp
+  public void Dispose();
+  ```
 
 And following events.
 
-- `public event RemoteDeviceConnectionCallback DeviceReady`
+- Connected
 
-- `public event RemoteDeviceConnectionCallbackWithMessage DeviceConnectionFailed`
+  ```csharp
+  public event RemoteDeviceConnectionCallback DeviceReady;
+  ```
 
-- `public event RemoteDeviceConnectionCallbackWithMessage DeviceConnectionLost`
+- Connect failed
 
-- `public event DigitalPinUpdatedCallback DigitalPinUpdated`
+  ```csharp
+  public event RemoteDeviceConnectionCallbackWithMessage DeviceConnectionFailed;
+  ```
 
-- `public event StringMessageReceivedCallback StringMessageReceived`
+- Disconnect
 
-- `public event SysexMessageReceivedCallback SysexMessageReceived`
+  ```csharp
+  public event RemoteDeviceConnectionCallbackWithMessage DeviceConnectionLost;
+  ```
 
-- `public event AnalogPinUpdatedCallback AnalogPinUpdated`
+- Pin updated
+
+  ```csharp
+  public event DigitalPinUpdatedCallback DigitalPinUpdated;
+  ```
+
+- String message received
+
+  ```csharp
+  public event StringMessageReceivedCallback StringMessageReceived;
+  ```
+
+- SysEx message received
+
+  ```csharp
+  public event SysexMessageReceivedCallback SysexMessageReceived;
+  ```
+
+- Analog Pin updated
+
+  ```csharp
+  public event AnalogPinUpdatedCallback AnalogPinUpdated;
+  ```
 
 And following properties.
 
-- `public HardwareProfile DeviceHardwareProfile { get; }`
+- Get device info
 
-- `public TwoWire I2c { get; }`
+  ```csharp
+  public HardwareProfile DeviceHardwareProfile { get; }
+  ```
+
+- Get I2C handler
+
+  ```csharp
+  public TwoWire I2c { get; }
+  ```
 
 So we can use these to access the Arduino device.
 

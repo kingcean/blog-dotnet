@@ -115,3 +115,12 @@ public class DelayTask
 ```
 
 To use it, you just need create an instance of this class with delay time span and call its process member method where you need execute the task. You can also register the event handler for processing.
+
+<!-- End -->
+---
+
+Originally published on MSDN blogs, _Delay Task_.
+
+> https://blogs.msdn.com/b/kingcean/archive/2016/03/20/delay-task.aspx
+
+(cc) Kingcean Tuan, 2016.

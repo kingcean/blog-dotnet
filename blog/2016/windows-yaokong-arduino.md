@@ -160,71 +160,97 @@ usb.begin(57600); // Need pass baud and serial configuration settings.
 
 其返回的 RemoteDevice 对象，包含以下重要事件。
 
-- `// 在设备连接成功后触发。`
+- 在设备连接成功后触发
 
-  `public event RemoteDeviceConnectionCallback DeviceReady`
+  ```csharp
+  public event RemoteDeviceConnectionCallback DeviceReady;
+  ```
 
-- `// 在设备连接失败后触发。`
+- 在设备连接失败后触发
 
-  `public event RemoteDeviceConnectionCallbackWithMessage DeviceConnectionFailed`
+  ```csharp
+  public event RemoteDeviceConnectionCallbackWithMessage DeviceConnectionFailed;
+  ```
 
-- `// 在设备掉线时触发。`
+- 在设备掉线时触发
 
-  `public event RemoteDeviceConnectionCallbackWithMessage DeviceConnectionLost`
+  ```csharp
+  public event RemoteDeviceConnectionCallbackWithMessage DeviceConnectionLost;
+  ```
 
-- `// 在收到数字 Pin 更新时触发。`
-  `public event DigitalPinUpdatedCallback DigitalPinUpdated`
+- 在收到数字 Pin 更新时触发
 
-- `// 在收到文本消息时触发。`
+  ```csharp
+  public event DigitalPinUpdatedCallback DigitalPinUpdated;
+  ```
 
-  `public event StringMessageReceivedCallback StringMessageReceived`
+- 在收到文本消息时触发
 
-- `// 在收到 SysEx 消息时触发。`
-  `public event SysexMessageReceivedCallback SysexMessageReceived`
+  ```csharp
+  public event StringMessageReceivedCallback StringMessageReceived;
+  ```
 
-- `// 在收到模拟 Pin 更新时触发。`
-  `public event AnalogPinUpdatedCallback AnalogPinUpdated`
+- 在收到 SysEx 消息时触发
+
+  ```csharp
+  public event SysexMessageReceivedCallback SysexMessageReceived;
+  ```
+
+- 在收到模拟 Pin 更新时触发
+
+  ```csharp
+  public event AnalogPinUpdatedCallback AnalogPinUpdated;
+  ```
 
 另外，还有许多非常实用的方法，如以下这些。
 
-- `// 对数字 Pin 进行读取。`
+- 对数字 Pin 进行读取
 
-  `public PinMode getPinMode(byte pin_)`
+  ```csharp
+  public PinMode getPinMode(byte pin_);
+  public PinState digitalRead(byte pin_);
+  ```
 
-  `public PinState digitalRead(byte pin_)`
+- 对数字 Pin 进行写入
 
-- `// 对数字 Pin 进行写入。`
+  ```csharp
+  public void pinMode(byte pin_, PinMode mode_);
+  public void digitalWrite(byte pin_, PinState state_);
+  ```
 
-  `public void pinMode(byte pin_, PinMode mode_)`
+- 对模拟 Pin 进行读取
 
-  `public void digitalWrite(byte pin_, PinState state_)`
+  ```csharp
+  public PinMode getPinMode(string analog_pin_);
+  public ushort analogRead(string analog_pin_);
+  ```
 
-- `// 对模拟 Pin 进行读取。`
+- 对模拟 Pin 进行写入
 
-  `public PinMode getPinMode(string analog_pin_)`
+  ```csharp
+  public void pinMode(string analog_pin_, PinMode mode_);
+  public void analogWrite(byte pin_, ushort value_);
+  ```
 
-  `public ushort analogRead(string analog_pin_)`
+- 销毁
 
-- `// 对模拟 Pin 进行写入。`
-
-  `public void pinMode(string analog_pin_, PinMode mode_)`
-
-  `public void analogWrite(byte pin_, ushort value_)`
-
-- `// 销毁。`
-
-  `public void Dispose()`
+  ```csharp
+  public void Dispose();
+  ```
 
 另外还有以下属性。
 
-- `// 获取设备信息。`
+- 获取设备信息
 
-  `public HardwareProfile DeviceHardwareProfile { get; }`
+  ```csharp
+  public HardwareProfile DeviceHardwareProfile { get; }
+  ```
 
+- 获取 I2C 操作对象
 
-- `// 获取 I2C 操作对象。`
-
-  `public TwoWire I2c { get; }`
+  ```csharp
+  public TwoWire I2c { get; }
+  ```
 
 由此，你可以很方便的对所连接的 Arduino 设备进行访问控制。
 

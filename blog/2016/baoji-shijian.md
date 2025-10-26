@@ -153,3 +153,12 @@ public class MultipleHitTask
 ```
 
 现在，我们可以在需要的地方，初始化一个这个类的对象，并绑定暴击触发时所需执行的事件，并在诸如点击、被遥测处或其它地方，调用这个对象的 `Process` 方法即可。
+
+<!-- End -->
+---
+
+原文发布于 MSDN 博客《Multiple Hit Task》
+
+> https://blogs.msdn.com/b/kingcean/archive/2016/03/21/multiple-hit-task.aspx
+
+(cc) Kingcean Tuan, 2016.

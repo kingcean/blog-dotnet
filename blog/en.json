@@ -6,6 +6,7 @@
             "url": "/2016/delay-task.md",
             "categories": [],
             "date": "20160320",
+            "end": true,
             "related": [
                 {
                     "name": "JS 版",
@@ -18,6 +19,7 @@
             "url": "/2016/multiple-hit-task.md",
             "categories": [],
             "date": "20160321",
+            "end": true,
             "related": [
                 {
                     "name": "JS 版",
@@ -29,19 +31,22 @@
             "name": "Windows 10 remote Arduino",
             "url": "/2016/windows-remote-arduino.md",
             "categories": ["iot"],
-            "date": "20160325"
+            "date": "20160325",
+            "end": true
         },
         {
             "name": "String format",
             "url": "/2016/string-format.md",
             "categories": [],
-            "date": "20160406"
+            "date": "20160406",
+            "end": true
         },
         {
             "name": "Speech in UWP",
             "url": "/2016/speech-in-uwp.md",
             "categories": ["windows-app", "asr", "tts"],
-            "date": "20160818"
+            "date": "20160818",
+            "end": true
         }
     ]
 }
