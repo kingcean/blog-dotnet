@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:image" content="images/bg/poster.jpg">
     <title>DotNet Dev - Kingcean.net</title>
-    <link href="https://cdn.jsdelivr.net/npm/hje@2.2.0/docs/css/site.net.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/hje@2.3.1/docs/css/site.net.css" rel="stylesheet" />
     <link href="../css/current.css" rel="stylesheet" />
     <style type="text/css">
     #sec-screenshots {
@@ -25,14 +25,14 @@
         box-sizing: border-box;
     }
     </style>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/hje@2.2.0/docs/js/site.js" ></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/hje@2.3.1/docs/js/mdblogs.js" ></script>
     <script type="text/javascript">
     function onInit() {
-        site.getString("blogs", "topmenu-blogs");
-        site.getString("screenshots", "title-screenshots")
-        site.getString("officialWebsite", "title-website")
-        site.getString("goHome", "link-gohome");
-        document.getElementById("topmenu-trivial").innerHTML = "Trivial " + site.getString("libs");
+        DeepX.MdBlogs.setElementText("topmenu-blogs", "blogs");
+        DeepX.MdBlogs.setElementText("title-screenshots", "screenshots")
+        DeepX.MdBlogs.setElementText("title-website", "officialWebsite")
+        DeepX.MdBlogs.setElementText("link-gohome", "goHome");
+        document.getElementById("topmenu-trivial").innerHTML = "Trivial " + DeepX.MdBlogs.getLocaleString("libs");
     }
     </script>
 </head>

@@ -23,30 +23,6 @@
 #project-trivial > span + a:active {
     color: #8CE;
 }
-#blog_content > article > main {
-    overflow-x: hidden;
-}
-#blog_content > article > main p > code,
-#blog_content > article > main li > code,
-#blog_content > article > main > table td > code,
-#blog_content > article > main > table th > code {
-    background-color: #333;
-    padding: 0 2px;
-    border-radius: 2px;
-    transition: 0.2s;
-}
-#blog_content > article > main p > code:hover,
-#blog_content > article > main li > code:hover,
-#blog_content > article > main > table td > code:hover,
-#blog_content > article > main > table th > code:hover {
-    background-color: #111;
-}
-#blog_content > article > main > table {
-    min-width: 80%;
-}
-#blog_content > article > main table th {
-    background-color: #1A1A1A;
-}
 @media screen and (max-width:800px) {
     #project-trivial > img {
         width: 48px; height: 48px; position: absolute; top: 20px; left: 20px;

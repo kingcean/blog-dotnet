@@ -1,0 +1,65 @@
+{
+    "name": ".Net Dev Blog",
+    "name#zh": ".Net 软件开发博客",
+    "blog": [
+        {
+            "name": "Delay task",
+            "name#zh": "延迟合并处理任务",
+            "file": "delay-task.md",
+            "file#zh": "yanchi-renwu.md",
+            "keywords": [],
+            "date": "20160320",
+            "end": true,
+            "related": [
+                {
+                    "name": "JS 版",
+                    "url": "https://kingcean.org/blog/?delay-task"
+                }
+            ]
+        },
+        {
+            "name": "Multiple hit task",
+            "name#zh": "暴击事件",
+            "file": "multiple-hit-task.md",
+            "file#zh": "baoji-shijian.md",
+            "keywords": [],
+            "date": "20160321",
+            "end": true,
+            "related": [
+                {
+                    "name": "JS 版",
+                    "url": "https://kingcean.org/blog/?multiple-hit-task"
+                }
+            ]
+        },
+        {
+            "name": "Windows 10 remote Arduino",
+            "name#zh": "Windows 10 编程遥控 Arduino",
+            "file": "windows-remote-arduino.md",
+            "file#zh": "windows-yaokong-arduino.md",
+            "keywords": ["iot"],
+            "date": "20160325",
+            "end": true
+        },
+        {
+            "name": "String format",
+            "name#zh": "String Format 的实现",
+            "file": "string-format.md",
+            "file#zh": "zifuchuan-geshi.md",
+            "keywords": [],
+            "date": "20160406",
+            "end": true
+        },
+        {
+            "name": "Speech in UWP",
+            "name#zh": "UWP 应用中的语音识别和合成",
+            "file": "speech-in-uwp.md",
+            "file#zh": "uwp-yuyin.md",
+            "keywords": ["windows-app", "asr", "tts"],
+            "date": "20160818",
+            "end": true
+        }
+    ],
+    "redir": {
+    }
+}
