@@ -12,8 +12,10 @@
             "end": true,
             "related": [
                 {
-                    "name": "JS 版",
-                    "url": "https://kingcean.org/blog/?delay-task"
+                    "name": "JS edition",
+                    "name#zh": "JS 版",
+                    "url": "https://kingcean.org/blog/?2016/delay-task",
+                    "url#zh": "https://kingcean.org/blog/?2016/yanchi-renwu"
                 }
             ]
         },
@@ -27,8 +29,10 @@
             "end": true,
             "related": [
                 {
-                    "name": "JS 版",
-                    "url": "https://kingcean.org/blog/?multiple-hit-task"
+                    "name": "JS edition",
+                    "name#zh": "JS 版",
+                    "url": "https://kingcean.org/blog/?multiple-hit-task",
+                    "url#zh": "https://kingcean.org/blog/?baoji-shijian"
                 }
             ]
         },
