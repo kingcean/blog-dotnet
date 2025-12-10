@@ -17,6 +17,12 @@
                     "url": "https://kingcean.org/blog/?2016/delay-task",
                     "url#zh": "https://kingcean.org/blog/?2016/yanchi-renwu"
                 }
+            ],
+            "notes": [
+                "This article was originally published in MSDN blogs."
+            ],
+            "notes#zh": [
+                "本文最初发布于作者在 MSDN 上所开设的博客。原文含有其它编程语言实现版本，本文中已将该部分拆分。"
             ]
         },
         {
@@ -31,9 +37,15 @@
                 {
                     "name": "JS edition",
                     "name#zh": "JS 版",
-                    "url": "https://kingcean.org/blog/?multiple-hit-task",
-                    "url#zh": "https://kingcean.org/blog/?baoji-shijian"
+                    "url": "https://kingcean.org/blog/?2016/multiple-hit-task",
+                    "url#zh": "https://kingcean.org/blog/?2016/baoji-shijian"
                 }
+            ],
+            "notes": [
+                "This article was originally published in MSDN blogs."
+            ],
+            "notes#zh": [
+                "本文最初发布于作者在 MSDN 上所开设的博客。原文含有其它编程语言实现版本，本文中已将该部分拆分。"
             ]
         },
         {
@@ -43,7 +55,13 @@
             "file#zh": "windows-yaokong-arduino.md",
             "keywords": ["iot"],
             "date": "20160325",
-            "end": true
+            "end": true,
+            "notes": [
+                "This article was originally published in MSDN blogs."
+            ],
+            "notes#zh": [
+                "本文最初发布于作者在 MSDN 上所开设的博客。"
+            ]
         },
         {
             "name": "String format",
@@ -52,7 +70,13 @@
             "file#zh": "zifuchuan-geshi.md",
             "keywords": [],
             "date": "20160406",
-            "end": true
+            "end": true,
+            "notes": [
+                "This article was originally published in MSDN blogs."
+            ],
+            "notes#zh": [
+                "本文最初发布于作者在 MSDN 上所开设的博客。"
+            ]
         },
         {
             "name": "Speech in UWP",
@@ -61,7 +85,13 @@
             "file#zh": "uwp-yuyin.md",
             "keywords": ["windows-app", "asr", "tts"],
             "date": "20160818",
-            "end": true
+            "end": true,
+            "notes": [
+                "This article was originally published in MSDN blogs."
+            ],
+            "notes#zh": [
+                "本文最初发布于作者在 MSDN 上所开设的博客。"
+            ]
         }
     ],
     "redir": {
