@@ -1,4 +1,5 @@
 {
+    "$schema": "https://cdn.jsdelivr.net/npm/hje@2.4.0/dist/mdblogs.schema.json",
     "name": ".Net Dev Blog",
     "name#zh": ".Net 软件开发博客",
     "blog": [
@@ -94,6 +95,16 @@
             ]
         }
     ],
+    "$defs": {
+        "contributors": [
+            { "name": "Kingcean Tuan", "url": "https://kingcean.net" }
+        ],
+        "keywords": [
+            { "name": "Installation", "name#zh": "安装", "value": "install" },
+            { "name": "Prepare", "name#zh": "准备", "value": "prepare" },
+            { "name": "NPM", "value": "npm" }
+        ]
+    },
     "redir": {
     }
 }
