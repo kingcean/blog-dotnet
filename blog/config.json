@@ -65,6 +65,10 @@
             "keywords": ["iot"],
             "date": "20160325",
             "end": true,
+            "thumb": {
+                "wide": "https://kingcean.net/blog/2016/images/thumb-windows-remote-arduino-wide.webp",
+                "common": "https://kingcean.net/blog/2016/images/thumb-windows-remote-arduino-tile.webp"
+            },
             "notes": [
                 "This article was originally published in MSDN blogs."
             ],
@@ -80,6 +84,10 @@
             "keywords": [],
             "date": "20160406",
             "end": true,
+            "thumb": {
+                "wide": "https://kingcean.net/blog/2016/images/thumb-string-format-wide.webp",
+                "common": "https://kingcean.net/blog/2016/images/thumb-string-format-tile.webp"
+            },
             "notes": [
                 "This article was originally published in MSDN blogs."
             ],
@@ -95,6 +103,10 @@
             "keywords": ["windows-app", "asr", "tts"],
             "date": "20160818",
             "end": true,
+            "thumb": {
+                "wide": "https://kingcean.net/blog/2016/images/thumb-speech-in-uwp-wide.webp",
+                "common": "https://kingcean.net/blog/2016/images/thumb-speech-in-uwp-tile.webp"
+            },
             "notes": [
                 "This article was originally published in MSDN blogs."
             ],
