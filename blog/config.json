@@ -1,5 +1,5 @@
 {
-    "$schema": "https://cdn.jsdelivr.net/npm/hje@2.4.2/dist/mdblogs.schema.json",
+    "$schema": "https://cdn.jsdelivr.net/npm/hje@2.4.3/dist/mdblogs.schema.json",
     "name": ".Net Dev Blog",
     "name#zh": ".Net 软件开发博客",
     "blog": [
@@ -11,6 +11,10 @@
             "keywords": [],
             "date": "20160320",
             "end": true,
+            "thumb": {
+                "wide": "https://kingcean.net/blog/2016/images/thumb-delay-task-wide.webp",
+                "common": "https://kingcean.net/blog/2016/images/thumb-delay-task-tile.webp"
+            },
             "related": [
                 {
                     "name": "JS edition",
@@ -34,6 +38,10 @@
             "keywords": [],
             "date": "20160321",
             "end": true,
+            "thumb": {
+                "wide": "https://kingcean.net/blog/2016/images/thumb-multiple-hit-task-wide.webp",
+                "common": "https://kingcean.net/blog/2016/images/thumb-multiple-hit-task-tile.webp"
+            },
             "related": [
                 {
                     "name": "JS edition",
@@ -95,6 +103,8 @@
             ]
         }
     ],
+    "redir": {
+    },
     "$defs": {
         "contributors": [
             { "name": "Kingcean Tuan", "url": "https://kingcean.net" }
@@ -104,7 +114,5 @@
             { "name": "Prepare", "name#zh": "准备", "value": "prepare" },
             { "name": "NPM", "value": "npm" }
         ]
-    },
-    "redir": {
     }
 }
